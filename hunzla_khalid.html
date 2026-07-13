@@ -1,0 +1,2406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Hunzla Khalid — AI / Computer Vision Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#03060f;--bg2:#060d1a;--c:#00e5ff;--v:#7c3aed;--p:#f472b6;--g:#10b981;--a:#fbbf24;--w:#f1f5f9;--m:rgba(241,245,249,0.5);--b:rgba(0,229,255,0.15)}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--w);overflow-x:hidden}
+#cvs{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(3,6,15,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--b);animation:navIn .8s forwards}
+@keyframes navIn{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:translateY(0)}}
+.logo{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;background:linear-gradient(135deg,var(--c),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav ul{list-style:none;display:flex;gap:2rem}
+nav ul a{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--m);transition:color .3s;position:relative}
+nav ul a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--c);transition:width .4s}
+nav ul a:hover{color:var(--c)} nav ul a:hover::after{width:100%}
+.nav-cta{font-size:.65rem;padding:.4rem 1.2rem;border:1px solid rgba(0,229,255,.35);color:var(--c);letter-spacing:.15em;text-transform:uppercase;background:rgba(0,229,255,.05);font-family:'Fira Code',monospace}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 2rem 6rem;position:relative;z-index:1;overflow:hidden}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 90% 70% at 50% 50%,black,transparent);pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.o1{width:500px;height:500px;background:rgba(124,58,237,.18);top:10%;left:10%;animation:oF 8s ease-in-out infinite}
+.o2{width:400px;height:400px;background:rgba(0,229,255,.12);bottom:10%;right:10%;animation:oF 10s ease-in-out infinite reverse}
+.o3{width:300px;height:300px;background:rgba(244,114,182,.1);top:50%;left:50%;transform:translate(-50%,-50%);animation:oF 6s ease-in-out infinite 2s}
+@keyframes oF{0%,100%{translate:0 0}33%{translate:30px -20px}66%{translate:-20px 30px}}
+.htag{font-family:'Fira Code',monospace;font-size:.72rem;color:var(--c);letter-spacing:.3em;margin-bottom:1.5rem;opacity:0;animation:fU .8s .3s forwards}
+.htag span{color:var(--v)}
+h1{font-family:'Syne',sans-serif;font-size:clamp(3rem,9vw,8rem);font-weight:800;line-height:.95;letter-spacing:-.03em;margin-bottom:1.5rem;opacity:0;animation:fU .9s .5s forwards}
+h1 .gw{color:var(--w);display:block} h1 .gg{background:linear-gradient(135deg,var(--c),var(--v),var(--p));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.hsub{font-size:clamp(.9rem,1.5vw,1.1rem);color:var(--m);max-width:520px;line-height:1.75;margin-bottom:3rem;opacity:0;animation:fU .9s .7s forwards}
+.hsub strong{color:var(--w)}
+.hbtns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fU .9s .9s forwards}
+.btn{padding:.9rem 2.5rem;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;font-weight:600;transition:transform .3s,box-shadow .3s;display:inline-block;border:none;cursor:pointer}
+.bs{background:linear-gradient(135deg,var(--c),var(--v));color:var(--bg);clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.bs:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,229,255,.3)}
+.bg2{border:1px solid rgba(0,229,255,.4);color:var(--c);background:rgba(0,229,255,.05);clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.bg2:hover{transform:translateY(-3px);background:rgba(0,229,255,.12)}
+.hnums{position:absolute;bottom:2rem;display:flex;gap:4rem;opacity:0;animation:fU .9s 1.1s forwards}
+.hn{text-align:center} .hnv{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,var(--c),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.hnl{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--m);margin-top:.3rem} .hns{width:1px;height:45px;background:var(--b);align-self:center}
+@keyframes fU{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+section{position:relative;z-index:1} .wrap{max-width:1200px;margin:0 auto;padding:0 3rem}
+.stag{display:inline-flex;align-items:center;gap:.5rem;font-family:'Fira Code',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--c);border:1px solid rgba(0,229,255,.2);padding:.3rem .9rem;margin-bottom:1.5rem;background:rgba(0,229,255,.04)}
+.stag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--c);animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.stitle{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem}
+.acc{background:linear-gradient(135deg,var(--c),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ABOUT */
+#about{padding:9rem 0;background:var(--bg)}
+.agrid{display:grid;grid-template-columns:380px 1fr;gap:5rem;align-items:center}
+.acard{background:linear-gradient(145deg,rgba(124,58,237,.12),rgba(0,229,255,.06));border:1px solid rgba(124,58,237,.25);padding:2.5rem;position:relative}
+.acard::before{content:'';position:absolute;top:-1px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--v),var(--c))}
+.aav{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--v),var(--c));display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--bg)}
+.aname{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;text-align:center;margin-bottom:.3rem}
+.arole{font-family:'Fira Code',monospace;font-size:.68rem;color:var(--c);letter-spacing:.15em;text-align:center;margin-bottom:1.5rem}
+.pills{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-bottom:1.5rem}
+.pill{font-size:.6rem;letter-spacing:.1em;padding:.25rem .7rem;border:1px solid rgba(0,229,255,.2);color:var(--c);background:rgba(0,229,255,.04);text-transform:uppercase}
+.astats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.1)}
+.ast{background:var(--bg2);padding:1rem;text-align:center} .astv{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--c)}
+.astl{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--m);margin-top:.2rem}
+.atxt p{font-size:.95rem;line-height:1.9;color:var(--m);margin-bottom:1rem} .atxt p strong{color:var(--w);font-weight:600}
+.cinfo{margin-top:2rem;display:flex;flex-direction:column;gap:.6rem}
+.ci{display:flex;align-items:center;gap:.8rem;font-family:'Fira Code',monospace;font-size:.75rem;color:var(--m);border-left:2px solid var(--c);padding-left:.8rem}
+
+/* PROJECTS */
+#projects{padding:9rem 0;background:var(--bg2)}
+.ph{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:5rem;flex-wrap:wrap;gap:1rem}
+.pc{font-family:'Fira Code',monospace;font-size:.72rem;color:var(--m)} .pc span{font-size:1.5rem;font-weight:700;color:var(--c)}
+.pstack{max-width:1200px;margin:0 auto}
+.pi{display:grid;grid-template-columns:1.1fr 1fr;margin-bottom:3px;min-height:480px;overflow:hidden;transition:transform .5s cubic-bezier(.23,1,.32,1)}
+.pi:hover{transform:scale(1.003);z-index:10;position:relative}
+.pi:nth-child(even){direction:rtl} .pi:nth-child(even)>*{direction:ltr}
+.pss{position:relative;overflow:hidden}
+.pss img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform 1s cubic-bezier(.23,1,.32,1)}
+.pi:hover .pss img{transform:scale(1.06)}
+.pglow{position:absolute;inset:0;pointer-events:none;z-index:1}
+.pbadge{position:absolute;bottom:16px;left:16px;z-index:2;font-family:'Fira Code',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;backdrop-filter:blur(8px)}
+.phover{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);opacity:0;transition:opacity .3s;backdrop-filter:blur(4px)}
+.pss:hover .phover{opacity:1}
+.pdbtn{display:flex;align-items:center;gap:.7rem;padding:1rem 2.2rem;border:2px solid;font-family:'Fira Code',monospace;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;transform:translateY(14px);transition:transform .32s cubic-bezier(.23,1,.32,1),background .25s;cursor:pointer;font-weight:600}
+.pss:hover .pdbtn{transform:translateY(0)}
+.pinfo{padding:3.5rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.pinfo::after{content:'';position:absolute;width:280px;height:280px;border-radius:50%;top:-80px;right:-80px;opacity:.06;pointer-events:none}
+.pi:nth-child(1) .pinfo{background:linear-gradient(135deg,#020a04,#03100a)} .pi:nth-child(1) .pinfo::after{background:var(--g)}
+.pi:nth-child(2) .pinfo{background:linear-gradient(135deg,#020612,#030a1c)} .pi:nth-child(2) .pinfo::after{background:var(--c)}
+.pi:nth-child(3) .pinfo{background:linear-gradient(135deg,#06020f,#0a0318)} .pi:nth-child(3) .pinfo::after{background:var(--v)}
+.pi:nth-child(4) .pinfo{background:linear-gradient(135deg,#0a0602,#1c0e03)} .pi:nth-child(4) .pinfo::after{background:var(--a)}
+.pnum{font-family:'Fira Code',monospace;font-size:.68rem;letter-spacing:.25em;margin-bottom:1rem}
+.pi:nth-child(1) .pnum{color:var(--g)} .pi:nth-child(2) .pnum{color:var(--c)} .pi:nth-child(3) .pnum{color:#a78bfa} .pi:nth-child(4) .pnum{color:var(--a)}
+.pname{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:1rem}
+.pdesc{font-size:.88rem;line-height:1.85;color:var(--m);margin-bottom:1.5rem}
+.ptags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2rem}
+.ptag{font-family:'Fira Code',monospace;font-size:.6rem;letter-spacing:.1em;padding:.2rem .6rem;border:1px solid}
+.pi:nth-child(1) .ptag{border-color:rgba(16,185,129,.3);color:var(--g);background:rgba(16,185,129,.05)}
+.pi:nth-child(2) .ptag{border-color:rgba(0,229,255,.25);color:var(--c);background:rgba(0,229,255,.04)}
+.pi:nth-child(3) .ptag{border-color:rgba(124,58,237,.3);color:#a78bfa;background:rgba(124,58,237,.05)}
+.pi:nth-child(4) .ptag{border-color:rgba(251,191,36,.3);color:var(--a);background:rgba(251,191,36,.05)}
+.p-dm{display:inline-flex;align-items:center;gap:.7rem;padding:.8rem 1.6rem;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;border:1px solid;cursor:pointer;transition:transform .25s,background .25s;font-family:'Space Grotesk',sans-serif;text-decoration:none}
+.pi:nth-child(1) .p-dm{color:var(--g);border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.07)}
+.pi:nth-child(2) .p-dm{color:var(--c);border-color:rgba(0,229,255,.4);background:rgba(0,229,255,.07)}
+.pi:nth-child(3) .p-dm{color:#a78bfa;border-color:rgba(124,58,237,.4);background:rgba(124,58,237,.07)}
+.pi:nth-child(4) .p-dm{color:var(--a);border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.07)}
+.p-dm:hover{transform:translateY(-2px)}
+.pi:nth-child(1) .p-dm:hover{background:rgba(16,185,129,.18)}
+.pi:nth-child(2) .p-dm:hover{background:rgba(0,229,255,.18)}
+.pi:nth-child(3) .p-dm:hover{background:rgba(124,58,237,.18)}
+.pi:nth-child(4) .p-dm:hover{background:rgba(251,191,36,.18)}
+
+/* PROJECT VISUAL PLACEHOLDERS */
+.pvis{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;position:relative;overflow:hidden}
+.pvis::before{content:'';position:absolute;inset:0;opacity:.08}
+.pvis-1{background:linear-gradient(135deg,#010d06,#021a0c);color:var(--g)}
+.pvis-1::before{background:radial-gradient(ellipse at 40% 40%,var(--g),transparent 70%)}
+.pvis-2{background:linear-gradient(135deg,#010610,#021025);color:var(--c)}
+.pvis-2::before{background:radial-gradient(ellipse at 60% 40%,var(--c),transparent 70%)}
+.pvis-3{background:linear-gradient(135deg,#04010d,#090218);color:#a78bfa}
+.pvis-3::before{background:radial-gradient(ellipse at 40% 60%,var(--v),transparent 70%)}
+.pvis-4{background:linear-gradient(135deg,#0d0601,#1c0e02);color:var(--a)}
+.pvis-4::before{background:radial-gradient(ellipse at 60% 60%,var(--a),transparent 70%)}
+.pvis-icon{font-size:5rem;position:absolute;opacity:.1}
+.pvis-label{position:relative;z-index:1;text-align:center}
+.pvis-label span{display:block;font-family:'Fira Code',monospace;font-size:.65rem;letter-spacing:.3em;margin-top:.5rem;opacity:.6}
+
+/* CONTACT MODAL */
+#cmodal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.75);backdrop-filter:blur(12px)}
+#cmodal.open{display:flex;animation:cmIn .3s cubic-bezier(.23,1,.32,1)}
+@keyframes cmIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.cbox{background:var(--bg2);border:1px solid rgba(0,229,255,.2);width:100%;max-width:480px;position:relative;overflow:hidden;margin:1rem}
+.cbox::before{content:'';position:absolute;top:-1px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--v),var(--c),var(--p))}
+.cbox-head{padding:1.5rem 2rem 1rem;border-bottom:1px solid rgba(0,229,255,.1)}
+.cbox-title{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:.3rem}
+.cbox-sub{font-family:'Fira Code',monospace;font-size:.68rem;color:var(--c);letter-spacing:.12em}
+.cx{position:absolute;top:1rem;right:1rem;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);color:var(--m);cursor:pointer;font-size:1rem;transition:all .2s;border-radius:2px}
+.cx:hover{border-color:rgba(239,68,68,.5);color:#f87171;background:rgba(239,68,68,.1)}
+.cbox-proj{padding:.8rem 2rem;background:rgba(0,229,255,.04);border-bottom:1px solid rgba(0,229,255,.1);font-family:'Fira Code',monospace;font-size:.7rem;color:var(--c);letter-spacing:.1em}
+.cbox-proj span{color:var(--m)}
+.clinks{padding:1.5rem 2rem;display:flex;flex-direction:column;gap:.8rem}
+.clink-btn{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:1px solid;text-decoration:none;transition:all .28s;position:relative;overflow:hidden}
+.clink-btn::before{content:'';position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity .25s}
+.clink-btn:hover::before{opacity:.06}
+.clink-btn:hover{transform:translateX(4px)}
+.clink-wa{border-color:rgba(37,211,102,.4);color:#25d366}
+.clink-wa:hover{border-color:#25d366;box-shadow:0 0 20px rgba(37,211,102,.15)}
+.clink-ph{border-color:rgba(0,229,255,.3);color:var(--c)}
+.clink-ph:hover{border-color:var(--c);box-shadow:0 0 20px rgba(0,229,255,.12)}
+.clink-gm{border-color:rgba(234,67,53,.35);color:#ea4335}
+.clink-gm:hover{border-color:#ea4335;box-shadow:0 0 20px rgba(234,67,53,.12)}
+.clink-li{border-color:rgba(10,102,194,.4);color:#0a66c2}
+.clink-li:hover{border-color:#0a66c2;box-shadow:0 0 20px rgba(10,102,194,.15)}
+.clink-gh{border-color:rgba(255,255,255,.2);color:var(--w)}
+.clink-gh:hover{border-color:rgba(255,255,255,.5);box-shadow:0 0 20px rgba(255,255,255,.08)}
+.clink-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04)}
+.clink-info{flex:1}
+.clink-label{font-family:'Fira Code',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-bottom:.2rem}
+.clink-val{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:600}
+.clink-arrow{font-size:1.1rem;opacity:.5}
+.cbox-note{padding:.8rem 2rem 1.5rem;font-family:'Fira Code',monospace;font-size:.65rem;color:rgba(241,245,249,.3);letter-spacing:.08em;border-top:1px solid rgba(0,229,255,.06);text-align:center}
+
+/* FLOATING WA BUTTON */
+#wa-float{position:fixed;bottom:2rem;right:2rem;z-index:500;display:flex;align-items:center;gap:.7rem;padding:.85rem 1.4rem;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;text-decoration:none;font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.05em;box-shadow:0 8px 32px rgba(37,211,102,.35);animation:floatIn 1s 2s both;transition:transform .3s,box-shadow .3s}
+#wa-float:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(37,211,102,.45)}
+.wa-icon{font-size:1.3rem}
+.wa-pulse{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1.5s ease-in-out infinite}
+@keyframes floatIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* SKILLS */
+#skills{padding:9rem 0;background:var(--bg);position:relative;overflow:hidden}
+#skills::before{content:'SKILLS';position:absolute;font-family:'Syne',sans-serif;font-size:20vw;font-weight:800;color:rgba(0,229,255,.018);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none}
+.skgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(0,229,255,.08);margin-top:4rem;position:relative;z-index:1}
+.sk{background:var(--bg);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:background .4s}
+.sk::before{content:'';position:absolute;bottom:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--c),var(--v));transition:width .5s}
+.sk:hover{background:rgba(0,229,255,.025)} .sk:hover::before{width:100%}
+.skicon{width:46px;height:46px;border:1px solid rgba(0,229,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.3rem}
+.skname{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;margin-bottom:.6rem} .skdesc{font-size:.82rem;line-height:1.8;color:var(--m)}
+
+/* CONTACT */
+#contact{padding:9rem 0;background:var(--bg2);position:relative;overflow:hidden}
+#contact::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.12),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.ctinner{max-width:720px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.ctbig{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,5.5rem);font-weight:800;line-height:.95;letter-spacing:-.03em;margin-bottom:1.5rem}
+.ctbig .hl{background:linear-gradient(135deg,var(--c),var(--v),var(--p));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.ctsub{font-size:.95rem;color:var(--m);line-height:1.8;margin-bottom:3.5rem}
+.ctlinks{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.ctlink{display:flex;align-items:center;gap:.7rem;padding:.9rem 1.8rem;border:1px solid;color:var(--m);font-family:'Space Grotesk',sans-serif;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .3s}
+.ctlink-wa{border-color:rgba(37,211,102,.4);color:#25d366}
+.ctlink-wa:hover{border-color:#25d366;background:rgba(37,211,102,.08);transform:translateY(-3px)}
+.ctlink-ph{border-color:rgba(0,229,255,.3);color:var(--c)}
+.ctlink-ph:hover{border-color:var(--c);background:rgba(0,229,255,.08);transform:translateY(-3px)}
+.ctlink-gm{border-color:rgba(234,67,53,.35);color:#ea4335}
+.ctlink-gm:hover{border-color:#ea4335;background:rgba(234,67,53,.08);transform:translateY(-3px)}
+.ctlink-li{border-color:rgba(10,102,194,.4);color:#0a66c2}
+.ctlink-li:hover{border-color:#0a66c2;background:rgba(10,102,194,.08);transform:translateY(-3px)}
+.ctlink-gh{border-color:rgba(255,255,255,.2);color:var(--w)}
+.ctlink-gh:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.05);transform:translateY(-3px)}
+
+footer{background:var(--bg);border-top:1px solid var(--b);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.fl{font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;background:linear-gradient(135deg,var(--c),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.fr{font-family:'Fira Code',monospace;font-size:.62rem;color:var(--m);letter-spacing:.1em}
+.rev{opacity:0;transform:translateY(36px);transition:opacity .85s ease,transform .85s cubic-bezier(.23,1,.32,1)}
+.rev.on{opacity:1;transform:none}
+@media(max-width:900px){nav{padding:.9rem 1.2rem}nav ul{display:none}.wrap{padding:0 1.2rem}.agrid{grid-template-columns:1fr;gap:2.5rem}.pi{grid-template-columns:1fr;min-height:auto}.pi:nth-child(even){direction:ltr}.pss{height:260px}.skgrid{grid-template-columns:1fr 1fr}footer{flex-direction:column;gap:.8rem;text-align:center}}
+
+
+
+
+
+
+
+/* CANVAS BG */
+
+
+/* NAV */
+
+
+.nav-back{display:flex;align-items:center;gap:.5rem;font-family:'Fira Code',monospace;font-size:.68rem;letter-spacing:.15em;color:var(--m);text-decoration:none;border:1px solid rgba(0,229,255,.2);padding:.35rem .9rem;transition:all .3s}
+.nav-back:hover{color:var(--c);border-color:rgba(0,229,255,.5);background:rgba(0,229,255,.04)}
+.nav-tag{font-family:'Fira Code',monospace;font-size:.65rem;color:var(--dim);letter-spacing:.2em}
+
+/* HERO HEADER */
+.hero-hdr{padding:8rem 3rem 4rem;text-align:center;position:relative;z-index:1}
+.hero-hdr::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(124,58,237,.08),transparent);pointer-events:none}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:'Fira Code',monospace;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--c);border:1px solid rgba(0,229,255,.2);padding:.3rem 1rem;margin-bottom:2rem;background:rgba(0,229,255,.03);position:relative;z-index:1}
+.eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--c);animation:blink 1.4s ease-in-out infinite}
+50%{opacity:1;transform:scale(1)}}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,7vw,6.5rem);font-weight:800;line-height:.95;letter-spacing:-.03em;margin-bottom:1.2rem;position:relative;z-index:1}
+.hero-title .g1{background:linear-gradient(135deg,var(--c) 0%,var(--v) 50%,var(--p) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:clamp(.9rem,1.4vw,1.05rem);color:var(--m);max-width:560px;margin:0 auto 3rem;line-height:1.8;position:relative;z-index:1}
+.hero-sub strong{color:var(--w)}
+
+/* FILTER BAR */
+.filter-bar{display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;margin-bottom:3rem;position:relative;z-index:1}
+.filter-btn{font-family:'Fira Code',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;padding:.4rem 1rem;border:1px solid rgba(255,255,255,.1);color:var(--dim);background:rgba(255,255,255,.02);cursor:pointer;transition:all .25s;user-select:none}
+.filter-btn:hover{color:var(--w);border-color:rgba(255,255,255,.3)}
+.filter-btn.active{color:var(--c);border-color:rgba(0,229,255,.5);background:rgba(0,229,255,.06)}
+
+/* STATS ROW */
+.stats-row{display:flex;justify-content:center;gap:3rem;margin-bottom:5rem;position:relative;z-index:1}
+.stat-item{text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--c),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.stat-lbl{font-family:'Fira Code',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:.3rem}
+
+/* PROJECTS GRID */
+.projects-section{padding:0 3rem 6rem;position:relative;z-index:1;max-width:1400px;margin:0 auto}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:rgba(0,229,255,.06)}
+
+/* CARD */
+.card{background:var(--bg);position:relative;overflow:hidden;cursor:pointer;transition:transform .4s cubic-bezier(.23,1,.32,1),z-index 0s}
+.card:hover{transform:translateY(-6px) scale(1.01);z-index:10}
+.card.featured{grid-column:span 2}
+.card.hidden{display:none}
+
+/* CARD GLOW BG */
+.card-glow{position:absolute;inset:0;opacity:0;transition:opacity .5s;pointer-events:none;z-index:0}
+.card:hover .card-glow{opacity:1}
+
+/* CARD INNER */
+.card-inner{position:relative;z-index:1;padding:2.2rem 2rem 1.8rem;height:100%;display:flex;flex-direction:column;min-height:320px}
+.card.featured .card-inner{min-height:360px}
+
+/* ACCENT LINE TOP */
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transition:transform .4s cubic-bezier(.23,1,.32,1);transform-origin:left;z-index:2}
+.card:hover::before{transform:scaleX(1)}
+
+/* CATEGORY BADGE */
+.cat-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:'Fira Code',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;padding:.25rem .7rem;border:1px solid;margin-bottom:1.4rem;width:fit-content}
+
+/* CARD NUMBER */
+.card-num{font-family:'Fira Code',monospace;font-size:.62rem;letter-spacing:.3em;color:var(--dim);margin-bottom:.6rem}
+
+/* CARD TITLE */
+.card-title{font-family:'Syne',sans-serif;font-size:clamp(1.3rem,2vw,1.7rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:.8rem}
+.card.featured .card-title{font-size:clamp(1.6rem,3vw,2.3rem)}
+
+/* CARD DESC */
+.card-desc{font-size:.82rem;line-height:1.8;color:var(--m);flex:1;margin-bottom:1.5rem}
+
+/* TECH STACK */
+.tech-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.6rem}
+.tech{font-family:'Fira Code',monospace;font-size:.58rem;letter-spacing:.08em;padding:.2rem .55rem;border:1px solid rgba(255,255,255,.08);color:var(--dim);background:rgba(255,255,255,.02);transition:all .3s}
+.card:hover .tech{border-color:rgba(255,255,255,.15);color:var(--m)}
+
+/* CARD FOOTER */
+.card-
+.card-links{display:flex;gap:.8rem}
+.card-link{font-family:'Fira Code',monospace;font-size:.62rem;letter-spacing:.12em;text-decoration:none;color:var(--dim);display:flex;align-items:center;gap:.35rem;transition:color .3s;text-transform:uppercase;padding:.3rem .6rem;border:1px solid transparent;transition:all .25s}
+.card-link:hover{color:var(--w);border-color:rgba(255,255,255,.15)}
+.card-details-btn{font-family:'Fira Code',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.25);padding:.35rem .8rem;cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:.5rem}
+.card-details-btn:hover{background:rgba(0,229,255,.12);border-color:rgba(0,229,255,.6)}
+
+/* CARD ICON */
+.card-icon{position:absolute;top:1.5rem;right:1.5rem;font-size:2.5rem;opacity:.06;transition:opacity .4s;pointer-events:none}
+.card.featured .card-icon{font-size:3.5rem;top:2rem;right:2rem}
+.card:hover .card-icon{opacity:.1}
+
+/* STATUS DOT */
+.status-dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:.4rem;animation:blink 2s ease-in-out infinite}
+
+/* COLORS PER CATEGORY */
+/* CV/AI - cyan */
+.c-cv .card-glow{background:radial-gradient(ellipse at 80% 20%,rgba(0,229,255,.07),transparent 60%)}
+.c-cv::before{background:linear-gradient(90deg,var(--c),transparent)}
+.c-cv .cat-badge{border-color:rgba(0,229,255,.3);color:var(--c);background:rgba(0,229,255,.05)}
+.c-cv .card-title{color:var(--w)}
+.c-cv .card-details-btn{color:var(--c);border-color:rgba(0,229,255,.25);background:rgba(0,229,255,.05)}
+.c-cv .card-details-btn:hover{background:rgba(0,229,255,.15)}
+
+/* AI/LLM - violet */
+.c-ai .card-glow{background:radial-gradient(ellipse at 80% 20%,rgba(124,58,237,.09),transparent 60%)}
+.c-ai::before{background:linear-gradient(90deg,var(--v),transparent)}
+.c-ai .cat-badge{border-color:rgba(124,58,237,.35);color:#a78bfa;background:rgba(124,58,237,.06)}
+.c-ai .card-details-btn{color:#a78bfa;border-color:rgba(124,58,237,.3);background:rgba(124,58,237,.05)}
+.c-ai .card-details-btn:hover{background:rgba(124,58,237,.15)}
+
+/* NLP/Audio - green */
+.c-nlp .card-glow{background:radial-gradient(ellipse at 80% 20%,rgba(16,185,129,.07),transparent 60%)}
+.c-nlp::before{background:linear-gradient(90deg,var(--g),transparent)}
+.c-nlp .cat-badge{border-color:rgba(16,185,129,.3);color:var(--g);background:rgba(16,185,129,.05)}
+.c-nlp .card-details-btn{color:var(--g);border-color:rgba(16,185,129,.25);background:rgba(16,185,129,.05)}
+.c-nlp .card-details-btn:hover{background:rgba(16,185,129,.15)}
+
+/* Full-Stack - amber */
+.c-fs .card-glow{background:radial-gradient(ellipse at 80% 20%,rgba(251,191,36,.07),transparent 60%)}
+.c-fs::before{background:linear-gradient(90deg,var(--a),transparent)}
+.c-fs .cat-badge{border-color:rgba(251,191,36,.3);color:var(--a);background:rgba(251,191,36,.05)}
+.c-fs .card-details-btn{color:var(--a);border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.05)}
+.c-fs .card-details-btn:hover{background:rgba(251,191,36,.15)}
+
+/* ML/DL - pink */
+.c-ml .card-glow{background:radial-gradient(ellipse at 80% 20%,rgba(244,114,182,.07),transparent 60%)}
+.c-ml::before{background:linear-gradient(90deg,var(--p),transparent)}
+.c-ml .cat-badge{border-color:rgba(244,114,182,.3);color:var(--p);background:rgba(244,114,182,.05)}
+.c-ml .card-details-btn{color:var(--p);border-color:rgba(244,114,182,.25);background:rgba(244,114,182,.05)}
+.c-ml .card-details-btn:hover{background:rgba(244,114,182,.15)}
+
+/* Orange */
+.c-or .card-glow{background:radial-gradient(ellipse at 80% 20%,rgba(249,115,22,.07),transparent 60%)}
+.c-or::before{background:linear-gradient(90deg,var(--o),transparent)}
+.c-or .cat-badge{border-color:rgba(249,115,22,.3);color:var(--o);background:rgba(249,115,22,.05)}
+.c-or .card-details-btn{color:var(--o);border-color:rgba(249,115,22,.25);background:rgba(249,115,22,.05)}
+.c-or .card-details-btn:hover{background:rgba(249,115,22,.15)}
+
+/* ═══════════════ MODAL ═══════════════ */
+#modal-overlay{position:fixed;inset:0;z-index:9999;background:rgba(2,4,12,.85);backdrop-filter:blur(16px);display:none;align-items:center;justify-content:center;padding:1.5rem}
+#modal-overlay.open{display:flex;animation:modalIn .3s cubic-bezier(.23,1,.32,1)}
+@keyframes modalIn{from{opacity:0}to{opacity:1}}
+.modal{width:100%;max-width:820px;max-height:90vh;overflow-y:auto;background:var(--bg2);border:1px solid rgba(255,255,255,.08);position:relative;animation:modalSlide .35s cubic-bezier(.23,1,.32,1)}
+@keyframes modalSlide{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal::-webkit-scrollbar{width:4px}
+.modal::-webkit-scrollbar-track{background:rgba(255,255,255,.03)}
+.modal::-webkit-scrollbar-thumb{background:rgba(0,229,255,.3);border-radius:2px}
+
+/* Modal top accent */
+.modal-accent{height:3px;width:100%;background:linear-gradient(90deg,var(--c),var(--v),var(--p))}
+
+/* Modal close */
+.modal-close{position:sticky;top:0;z-index:10;display:flex;justify-content:flex-end;padding:.8rem 1rem 0;background:var(--bg2)}
+.close-btn{width:32px;height:32px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--m);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.close-btn:hover{border-color:rgba(239,68,68,.5);color:#f87171;background:rgba(239,68,68,.08)}
+
+/* Modal body */
+.modal-
+.modal-eyebrow{font-family:'Fira Code',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem}
+.modal-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1;letter-spacing:-.03em;margin-bottom:.5rem}
+.modal-subtitle{font-family:'Fira Code',monospace;font-size:.72rem;letter-spacing:.15em;color:var(--dim);margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.modal-section{margin-bottom:2rem}
+.modal-section-title{font-family:'Fira Code',monospace;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.modal-section-title::before{content:'//';color:var(--c);opacity:.6}
+.modal-desc{font-size:.9rem;line-height:1.9;color:var(--m)}
+.modal-desc strong{color:var(--w);font-weight:600}
+
+/* Feature list */
+.feat-list{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.feat-list li{display:flex;align-items:flex-start;gap:.8rem;font-size:.85rem;line-height:1.6;color:var(--m)}
+.feat-list li::before{content:'▸';flex-shrink:0;margin-top:.05rem;font-size:.75rem}
+
+/* Tech grid */
+.tech-grid{display:flex;flex-wrap:wrap;gap:.5rem}
+.tech-chip{font-family:'Fira Code',monospace;font-size:.65rem;letter-spacing:.1em;padding:.3rem .75rem;border:1px solid rgba(255,255,255,.1);color:var(--m);background:rgba(255,255,255,.03)}
+
+/* Stats mini */
+.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);margin:2rem 0;border:1px solid rgba(255,255,255,.06)}
+.mini-stat{background:var(--bg3);padding:1.2rem 1rem;text-align:center}
+.mini-stat-v{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;line-height:1}
+.mini-stat-l{font-family:'Fira Code',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-top:.3rem}
+
+/* Modal action btns */
+.modal-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06)}
+.m-btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.5rem;font-family:'Fira Code',monospace;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;font-weight:600;transition:all .3s;border:1px solid}
+.m-btn-primary{background:linear-gradient(135deg,var(--c),var(--v));color:var(--bg);border-color:transparent}
+.m-btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,229,255,.25)}
+.m-btn-ghost{color:var(--m);border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
+.m-btn-ghost:hover{color:var(--w);border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.06)}
+
+/* FOOTER */
+
+
+
+
+/* RESPONSIVE */
+@media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}.card.featured{grid-column:span 2}}
+@media(max-width:700px){.projects-section{padding:0 1rem 4rem}.grid{grid-template-columns:1fr}.card.featured{grid-column:span 1}.hero-hdr{padding:6rem 1.5rem 3rem}.stats-row{gap:1.5rem}.modal-.mini-stats{grid-template-columns:repeat(3,1fr)}.filter-bar{padding:0 1rem}}
+
+
+/* ═══ ALL-PROJECTS SECTION OVERRIDES ═══ */
+#all-projects{padding:8rem 0 0;background:var(--bg)}
+.hero-hdr{padding:2.5rem 3rem 2rem;text-align:center;position:relative;z-index:1}
+.hero-hdr::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(124,58,237,.05),transparent);pointer-events:none}
+.projects-section{padding:0 3rem 7rem;position:relative;z-index:1;max-width:1400px;margin:0 auto}
+@media(max-width:1100px){.pgrid{grid-template-columns:repeat(2,1fr)}!card.featured{grid-column:span 2}}
+@media(max-width:700px){.pgrid{grid-template-columns:1fr}.card.featured{grid-column:span 1}.hero-hdr{padding:1.5rem 1rem}.projects-section{padding:0 1rem 4rem}}
+
+
+/* ════════════════════════════════════════
+   FRIDAY CHAT WIDGET
+════════════════════════════════════════ */
+#friday-fab{position:fixed;bottom:5.5rem;right:1.5rem;z-index:600;display:flex;align-items:center;gap:.75rem;cursor:pointer}
+.friday-ring{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,var(--v),var(--c));padding:3px;animation:floatIn 1s 1.8s both;box-shadow:0 0 28px rgba(124,58,237,.5);transition:transform .3s,box-shadow .3s}
+.friday-ring:hover{transform:scale(1.1) translateY(-3px);box-shadow:0 0 44px rgba(0,229,255,.6)}
+.friday-inner{width:100%;height:100%;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1.7rem;position:relative}
+.friday-pulse{position:absolute;top:0;right:0;width:14px;height:14px;border-radius:50%;background:#25d366;border:2px solid var(--bg);animation:pulse 2s ease-in-out infinite}
+.friday-label{background:rgba(3,6,15,.9);border:1px solid rgba(124,58,237,.4);padding:.3rem .85rem;font-family:'Fira Code',monospace;font-size:.62rem;letter-spacing:.15em;color:#a78bfa;white-space:nowrap;animation:floatIn 1s 2s both;backdrop-filter:blur(10px)}
+
+/* ── PICKER MODAL ── */
+#chat-picker{position:fixed;inset:0;z-index:8000;display:none;align-items:flex-end;justify-content:flex-end;padding:0 2rem 7rem}
+#chat-picker.open{display:flex;animation:pickerIn .25s cubic-bezier(.23,1,.32,1)}
+@keyframes pickerIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.picker-card{background:var(--bg2);border:1px solid rgba(124,58,237,.3);width:300px;overflow:hidden;position:relative}
+.picker-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--v),var(--c))}
+.picker-head{padding:1.2rem 1.5rem .8rem;font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800}
+.picker-sub{font-family:'Fira Code',monospace;font-size:.6rem;color:var(--dim);letter-spacing:.15em;margin-top:.2rem}
+.picker-options{display:flex;flex-direction:column;gap:1px;background:rgba(0,229,255,.06);margin:.4rem 0}
+.picker-opt{display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;background:var(--bg);cursor:pointer;transition:background .2s;border:none;width:100%;text-align:left}
+.picker-opt:hover{background:rgba(124,58,237,.1)}
+.picker-opt-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.picker-opt-icon.friday-ico{background:linear-gradient(135deg,rgba(124,58,237,.3),rgba(0,229,255,.2));border:1px solid rgba(124,58,237,.4)}
+.picker-opt-icon.gpt-ico{background:linear-gradient(135deg,rgba(16,185,129,.25),rgba(0,229,255,.1));border:1px solid rgba(16,185,129,.35)}
+.picker-opt-info{flex:1}
+.picker-opt-name{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:800;margin-bottom:.15rem}
+.picker-opt-desc{font-family:'Fira Code',monospace;font-size:.58rem;letter-spacing:.1em;color:var(--dim)}
+.picker-opt-arrow{font-size:.9rem;color:var(--dim)}
+.picker-note{padding:.7rem 1.5rem 1rem;font-family:'Fira Code',monospace;font-size:.6rem;color:rgba(241,245,249,.25);letter-spacing:.08em}
+
+/* ── CHAT WINDOW ── */
+#chat-win{position:fixed;bottom:2rem;right:2rem;z-index:8001;width:400px;height:600px;background:var(--bg2);border:1px solid rgba(124,58,237,.3);display:none;flex-direction:column;overflow:hidden}
+#chat-win.open{display:flex;animation:chatIn .3s cubic-bezier(.23,1,.32,1)}
+@keyframes chatIn{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:none}}
+.chat-win-accent{height:2px;flex-shrink:0}
+.chat-win-head{display:flex;align-items:center;gap:.75rem;padding:.9rem 1.1rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;background:rgba(3,6,15,.6);backdrop-filter:blur(12px)}
+.chat-win-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.chat-win-av.friday-av{background:linear-gradient(135deg,var(--v),var(--c))}
+.chat-win-av.gpt-av{background:linear-gradient(135deg,#10b981,#059669)}
+.chat-win-info{flex:1}
+.chat-win-name{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:800}
+.chat-win-status{font-family:'Fira Code',monospace;font-size:.6rem;letter-spacing:.12em;color:var(--g);display:flex;align-items:center;gap:.35rem}
+.chat-status-dot{width:6px;height:6px;border-radius:50%;background:var(--g);animation:pulse 1.5s ease-in-out infinite}
+.chat-win-btns{display:flex;gap:.4rem}
+.chat-win-btn{width:28px;height:28px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--m);cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:all .2s;border-radius:3px}
+.chat-win-btn:hover{border-color:rgba(0,229,255,.4);color:var(--c)}
+.chat-mode-badge{font-family:'Fira Code',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;cursor:pointer;transition:all .2s}
+.chat-mode-badge.friend-mode{border:1px solid rgba(0,229,255,.3);color:var(--c);background:rgba(0,229,255,.06)}
+.chat-mode-badge.flirty-mode{border:1px solid rgba(244,114,182,.35);color:var(--p);background:rgba(244,114,182,.06)}
+.chat-mode-badge.bold-mode{border:1px solid rgba(251,191,36,.35);color:var(--a);background:rgba(251,191,36,.06)}
+
+/* ── MESSAGES ── */
+.chat-msgs{flex:1;overflow-y:auto;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.7rem;scroll-behavior:smooth}
+.chat-msgs::-webkit-scrollbar{width:3px}
+.chat-msgs::-webkit-scrollbar-thumb{background:rgba(124,58,237,.4);border-radius:2px}
+.msg{max-width:80%;display:flex;flex-direction:column;gap:.2rem;animation:msgIn .25s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg.user{align-self:flex-end;align-items:flex-end}
+.msg.ai{align-self:flex-start;align-items:flex-start}
+.msg-bubble{padding:.55rem .85rem;font-family:'Space Grotesk',sans-serif;font-size:.82rem;line-height:1.6;word-break:break-word}
+.msg.user .msg-bubble{background:linear-gradient(135deg,var(--v),rgba(124,58,237,.7));color:#fff;border-radius:14px 14px 3px 14px}
+.msg.ai .msg-bubble{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:var(--w);border-radius:14px 14px 14px 3px}
+.msg-time{font-family:'Fira Code',monospace;font-size:.55rem;color:var(--dim);letter-spacing:.08em}
+.msg-avatar{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;margin-bottom:.1rem;flex-shrink:0}
+.msg.ai .msg-avatar{background:linear-gradient(135deg,var(--v),var(--c))}
+
+/* typing indicator */
+.typing-bubble{display:flex;align-items:center;gap:4px;padding:.55rem .85rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px 14px 14px 3px;width:fit-content}
+.typing-dot{width:7px;height:7px;border-radius:50%;background:rgba(124,58,237,.8);animation:typingBounce 1.2s ease-in-out infinite}
+.typing-dot:nth-child(2){animation-delay:.2s}
+.typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes typingBounce{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-6px);opacity:1}}
+
+/* ── INPUT ── */
+.chat-input-row{display:flex;gap:.5rem;padding:.75rem .9rem;border-top:1px solid rgba(255,255,255,.06);flex-shrink:0;background:rgba(3,6,15,.5);align-items:flex-end}
+.chat-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:var(--w);font-family:'Space Grotesk',sans-serif;font-size:.82rem;padding:.6rem .85rem;resize:none;max-height:100px;min-height:38px;line-height:1.5;outline:none;transition:border-color .25s;border-radius:8px}
+.chat-input:focus{border-color:rgba(124,58,237,.5)}
+.chat-input::placeholder{color:var(--dim)}
+.chat-send-btn{width:38px;height:38px;background:linear-gradient(135deg,var(--v),var(--c));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:transform .2s,box-shadow .2s;border-radius:8px;flex-shrink:0}
+.chat-send-btn:hover{transform:scale(1.08);box-shadow:0 4px 16px rgba(0,229,255,.3)}
+.chat-send-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+/* ── GPT KEY PROMPT ── */
+.gpt-key-row{display:flex;flex-direction:column;gap:.6rem;padding:1.5rem;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(16,185,129,.03)}
+.gpt-key-label{font-family:'Fira Code',monospace;font-size:.62rem;letter-spacing:.15em;color:var(--g)}
+.gpt-key-input-row{display:flex;gap:.5rem}
+.gpt-key-inp{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(16,185,129,.25);color:var(--w);font-family:'Fira Code',monospace;font-size:.75rem;padding:.5rem .8rem;outline:none;border-radius:6px}
+.gpt-key-inp:focus{border-color:rgba(16,185,129,.6)}
+.gpt-key-btn{padding:.5rem 1rem;background:linear-gradient(135deg,#10b981,#059669);border:none;color:#fff;font-family:'Fira Code',monospace;font-size:.68rem;letter-spacing:.1em;cursor:pointer;border-radius:6px;white-space:nowrap}
+.gpt-key-note{font-family:'Fira Code',monospace;font-size:.58rem;color:rgba(241,245,249,.25);letter-spacing:.08em}
+
+/* ── SCENE: welcome ── */
+.chat-welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:1rem;padding:2rem;text-align:center}
+.chat-welcome-av{width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:.5rem}
+.chat-welcome-name{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800}
+.chat-welcome-sub{font-family:'Fira Code',monospace;font-size:.65rem;letter-spacing:.15em;color:var(--dim)}
+.chat-suggestion-row{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-top:.5rem}
+.chat-sugg{font-family:'Fira Code',monospace;font-size:.62rem;letter-spacing:.1em;padding:.3rem .75rem;border:1px solid rgba(124,58,237,.3);color:#a78bfa;background:rgba(124,58,237,.06);cursor:pointer;transition:all .2s;border-radius:4px}
+.chat-sugg:hover{background:rgba(124,58,237,.18);border-color:rgba(124,58,237,.6)}
+
+@media(max-width:500px){#chat-win{width:calc(100vw - 2rem);right:1rem;height:520px}#chat-picker{right:1rem;padding-bottom:7rem}}
+
+
+/* ── WA FLOAT ── */
+#wa-float2{position:fixed;bottom:1.5rem;right:1.5rem;z-index:590;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);animation:floatIn 1s 2.2s both;transition:transform .3s,box-shadow .3s;text-decoration:none}
+#wa-float2:hover{transform:scale(1.12) translateY(-2px);box-shadow:0 10px 32px rgba(37,211,102,.55)}
+#wa-float2 svg{width:24px;height:24px}
+
+/* ── EXPERIENCE SECTION ── */
+#experience{padding:9rem 0;background:var(--bg2);position:relative;overflow:hidden}
+#experience::before{content:'EXP';position:absolute;font-family:'Syne',sans-serif;font-size:18vw;font-weight:800;color:rgba(124,58,237,.018);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none}
+.exp-timeline{position:relative;padding-left:2rem}
+.exp-timeline::before{content:'';position:absolute;left:.5rem;top:.5rem;bottom:.5rem;width:1px;background:linear-gradient(180deg,var(--v),var(--c),rgba(0,229,255,.1))}
+.exp-item{position:relative;margin-bottom:2.5rem;padding-left:2rem}
+.exp-item:last-child{margin-bottom:0}
+.exp-dot{position:absolute;left:-1.6rem;top:.85rem;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--v),var(--c));border:2px solid var(--bg2);z-index:1;box-shadow:0 0 12px rgba(0,229,255,.4)}
+.exp-dot.freelance-dot{background:linear-gradient(135deg,var(--g),#059669);box-shadow:0 0 12px rgba(16,185,129,.4)}
+.exp-card{background:var(--bg);border:1px solid rgba(255,255,255,.06);padding:1.8rem 2rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.exp-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--v),var(--c));transform:scaleY(0);transition:transform .4s;transform-origin:top}
+.exp-card:hover{border-color:rgba(124,58,237,.3);transform:translateX(4px)}
+.exp-card:hover::before{transform:scaleY(1)}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.exp-role{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:var(--w);margin-bottom:.25rem}
+.exp-company{font-family:'Fira Code',monospace;font-size:.7rem;letter-spacing:.12em;color:var(--c)}
+.exp-date{font-family:'Fira Code',monospace;font-size:.68rem;letter-spacing:.15em;color:var(--dim);text-align:right;white-space:nowrap}
+.exp-type{font-family:'Fira Code',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--v);text-align:right;margin-top:.2rem}
+.exp-desc{font-size:.87rem;line-height:1.85;color:var(--m);margin-bottom:1.2rem}
+.exp-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.exp-tag{font-family:'Fira Code',monospace;font-size:.6rem;letter-spacing:.08em;padding:.22rem .6rem;border:1px solid rgba(124,58,237,.25);color:#a78bfa;background:rgba(124,58,237,.05)}
+@media(max-width:700px){.exp-header{flex-direction:column}.exp-date,.exp-type{text-align:left}.exp-timeline{padding-left:1.5rem}.exp-item{padding-left:1.5rem}}
+
+
+/* ── FRIDAY LAUNCHER MODAL ── */
+#launcher-modal{position:fixed;inset:0;z-index:9000;background:rgba(2,4,12,.92);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;padding:1.5rem}
+#launcher-modal.open{display:flex;animation:modalIn .3s cubic-bezier(.23,1,.32,1)}
+.launch-box{width:100%;max-width:560px;background:var(--bg2);border:1px solid rgba(0,229,255,.2);position:relative}
+.launch-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--v),var(--c))}
+.launch-head{padding:1.4rem 1.8rem 1rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.launch-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:.3rem}
+.launch-sub{font-family:'Fira Code',monospace;font-size:.62rem;letter-spacing:.12em;color:var(--c)}
+.launch-close{position:absolute;top:.9rem;right:.9rem;width:28px;height:28px;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--m);cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.launch-close:hover{border-color:rgba(239,68,68,.5);color:#f87171}
+.launch-steps{padding:1.2rem 1.8rem;display:flex;flex-direction:column;gap:1rem}
+.launch-step{display:flex;gap:.9rem;align-items:flex-start}
+.launch-step-num{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--v),var(--c));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:.72rem;font-weight:800;color:var(--bg);flex-shrink:0;margin-top:.1rem}
+.launch-step-body{flex:1}
+.launch-step-title{font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;margin-bottom:.4rem}
+.launch-step-desc{font-family:'Fira Code',monospace;font-size:.65rem;color:var(--dim);letter-spacing:.08em;margin-bottom:.5rem}
+.launch-cmd{background:rgba(0,0,0,.4);border:1px solid rgba(0,229,255,.15);padding:.5rem .85rem;font-family:'Fira Code',monospace;font-size:.72rem;color:var(--c);letter-spacing:.05em;display:flex;align-items:center;justify-content:space-between;gap:.5rem;cursor:pointer;transition:all .2s}
+.launch-cmd:hover{border-color:rgba(0,229,255,.5);background:rgba(0,229,255,.04)}
+.launch-cmd-text{flex:1;word-break:break-all}
+.launch-cmd-copy{font-size:.65rem;color:var(--dim);white-space:nowrap;border:1px solid rgba(255,255,255,.1);padding:.15rem .45rem;border-radius:2px;transition:all .2s}
+.launch-cmd:hover .launch-cmd-copy{color:var(--c);border-color:rgba(0,229,255,.3)}
+.launch-dl-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.4rem}
+.launch-dl-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.45rem 1rem;font-family:'Fira Code',monospace;font-size:.65rem;letter-spacing:.1em;cursor:pointer;border:1px solid;transition:all .25s;text-decoration:none;background:transparent}
+.launch-dl-py{border-color:rgba(0,229,255,.3);color:var(--c)}
+.launch-dl-py:hover{background:rgba(0,229,255,.08);border-color:rgba(0,229,255,.6)}
+.launch-dl-bat{border-color:rgba(251,191,36,.3);color:var(--a)}
+.launch-dl-bat:hover{background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.6)}
+.launch-status-row{padding:.85rem 1.8rem;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.2)}
+.launch-status-dot{width:8px;height:8px;border-radius:50%;background:var(--dim);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+.launch-status-dot.green{background:var(--g)}
+.launch-status-dot.yellow{background:var(--a)}
+.launch-status-txt{font-family:'Fira Code',monospace;font-size:.65rem;letter-spacing:.1em;color:var(--dim);margin-left:.6rem;flex:1}
+.launch-open-btn{font-family:'Fira Code',monospace;font-size:.65rem;letter-spacing:.12em;padding:.4rem 1rem;border:1px solid rgba(16,185,129,.4);color:var(--g);background:rgba(16,185,129,.07);cursor:pointer;transition:all .2s}
+.launch-open-btn:hover{background:rgba(16,185,129,.18);border-color:var(--g)}
+.launch-open-btn:disabled{opacity:.35;cursor:not-allowed}
+.copied-toast{position:fixed;bottom:6rem;left:50%;transform:translateX(-50%);background:rgba(16,185,129,.9);color:#fff;font-family:'Fira Code',monospace;font-size:.7rem;letter-spacing:.1em;padding:.5rem 1.2rem;border-radius:3px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999}
+.copied-toast.show{opacity:1}
+
+</style>
+</head>
+<body>
+<canvas id="cvs"></canvas>
+
+
+
+
+<!-- CONTACT MODAL -->
+<div id="cmodal">
+  <div class="cbox">
+    <div class="cx" id="cmclose">&#x2715;</div>
+    <div class="cbox-head">
+      <div class="cbox-title">&#128172; Let's Connect</div>
+      <div class="cbox-sub">// reach out — i respond fast</div>
+    </div>
+    <div class="cbox-proj"><span>About: </span><span id="cprojname">—</span></div>
+    <div class="clinks">
+      <a href="https://wa.me/923XXXXXXXXX" class="clink-btn clink-wa" target="_blank">
+        <div class="clink-icon">&#128241;</div>
+        <div class="clink-info">
+          <div class="clink-label">WhatsApp</div>
+          <div class="clink-val">+92 3XX-XXXXXXX</div>
+        </div>
+        <div class="clink-arrow">&#8599;</div>
+      </a>
+      <a href="mailto:hunzlakhalid@gmail.com" class="clink-btn clink-gm" target="_blank">
+        <div class="clink-icon">&#9993;</div>
+        <div class="clink-info">
+          <div class="clink-label">Email</div>
+          <div class="clink-val">hunzlakhalid@gmail.com</div>
+        </div>
+        <div class="clink-arrow">&#8599;</div>
+      </a>
+      <a href="https://linkedin.com/in/MuhammadHunzlaKhalid" class="clink-btn clink-li" target="_blank">
+        <div class="clink-icon">&#128279;</div>
+        <div class="clink-info">
+          <div class="clink-label">LinkedIn</div>
+          <div class="clink-val">MuhammadHunzlaKhalid</div>
+        </div>
+        <div class="clink-arrow">&#8599;</div>
+      </a>
+      <a href="https://github.com/MuhammadHunzlaKhalid" class="clink-btn clink-gh" target="_blank">
+        <div class="clink-icon">&#128025;</div>
+        <div class="clink-info">
+          <div class="clink-label">GitHub</div>
+          <div class="clink-val">MuhammadHunzlaKhalid</div>
+        </div>
+        <div class="clink-arrow">&#8599;</div>
+      </a>
+    </div>
+    <div class="cbox-note">// based in lahore — open to remote worldwide</div>
+  </div>
+</div>
+
+<!-- FLOATING WA -->
+
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Hunzla Khalid</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Featured</a></li>
+    <li><a href="#all-projects">All Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-cta">Available for work</div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hgrid"></div>
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="htag">// <span>BS Computer Science &rarr; 2022–2026</span> &nbsp; GC University Lahore</div>
+  <h1><span class="gw">Building the</span><span class="gg">Future</span><span class="gw" style="font-weight:300">one model at a time</span></h1>
+  <p class="hsub">AI &amp; Computer Vision developer building <strong>real intelligent systems</strong> — from fall detection &amp; embodied AI to full-stack ERP, GPS field tools &amp; autonomous pipelines.</p>
+  <div class="hbtns">
+    <a href="#projects" class="btn bs">View My Work</a>
+    <a href="#contact" class="btn bg2">Get In Touch</a>
+  </div>
+  <div class="hnums">
+    <div class="hn"><div class="hnv">12</div><div class="hnl">Projects</div></div>
+    <div class="hns"></div>
+    <div class="hn"><div class="hnv">CV</div><div class="hnl">Computer Vision</div></div>
+    <div class="hns"></div>
+    <div class="hn"><div class="hnv">AI</div><div class="hnl">Everything</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about"><div class="wrap">
+  <div class="agrid">
+    <div class="acard rev">
+      <div class="aav">HK</div>
+      <div class="aname">Hunzla Khalid</div>
+      <div class="arole">// AI &amp; Computer Vision Developer</div>
+      <div class="pills">
+        <span class="pill">Computer Vision</span>
+        <span class="pill">Deep Learning</span>
+        <span class="pill">YOLOv8</span>
+        <span class="pill">LLM / NLP</span>
+        <span class="pill">Flutter</span>
+        <span class="pill">Python</span>
+        <span class="pill">FastAPI</span>
+        <span class="pill">QA Automation</span><span class="pill">Selenium</span><span class="pill">Lahore, PK</span>
+      </div>
+      <div class="astats">
+        <div class="ast"><div class="astv">12</div><div class="astl">Projects</div></div>
+        <div class="ast"><div class="astv">2+</div><div class="astl">Years Exp</div></div>
+        <div class="ast"><div class="astv">&infin;</div><div class="astl">Ideas</div></div>
+      </div>
+    </div>
+    <div class="atxt rev">
+      <div class="stag">About me</div>
+      <div class="stitle">I build AI that <span class="acc">sees, thinks</span> &amp; acts</div>
+      <p>Every project starts with a <strong>problem worth solving</strong> — whether it's detecting a fall before a caregiver can react, or dubbing an anime episode in real time. I engineer the full stack: models, APIs, UIs.</p>
+      <p>From <strong>dual-YOLOv8 fall detection</strong> with safe zones &amp; Twilio WhatsApp alerts, to a <strong>3D pose mirror</strong> that maps your skeleton onto an anime character — everything is grounded in deep technical understanding, not just API calls.</p>
+      <p>Long-term vision: <strong>a JARVIS-like AI</strong> and eventually an Iron Man suit. I'm building the foundation — one system at a time.</p>
+      <div class="cinfo">
+        <div class="ci">&#127968;&nbsp; Lahore, Punjab, Pakistan</div>
+        <div class="ci">&#127891;&nbsp; BS CS — GC University Lahore (2022–2026)</div>
+        <div class="ci">&#128187;&nbsp; github.com/MuhammadHunzlaKhalid</div>
+        <div class="ci">&#9993;&nbsp; hunzlakhalid@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience"><div class="wrap">
+  <div class="rev" style="margin-bottom:4rem">
+    <div class="stag">Experience</div>
+    <div class="stitle">Where I've <span class="acc">shipped real work</span></div>
+  </div>
+  <div class="exp-timeline rev">
+
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-left">
+            <div class="exp-role">QA Automation Engineer</div>
+            <div class="exp-company">Gemini Jr — Australian Software House</div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-date">2024 – 2025</div>
+            <div class="exp-type">Remote · Part-time</div>
+          </div>
+        </div>
+        <p class="exp-desc">Led QA automation for web and API projects. Built Selenium + Python test suites, wrote manual test cases, reported bugs and tracked regression cycles for Australian clients.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Selenium</span><span class="exp-tag">Python</span>
+          <span class="exp-tag">Test Automation</span><span class="exp-tag">API Testing</span>
+          <span class="exp-tag">Regression Testing</span><span class="exp-tag">Bug Reporting</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-left">
+            <div class="exp-role">Software QA Tester</div>
+            <div class="exp-company">Freelance Client Project</div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-date">2023 – 2024</div>
+            <div class="exp-type">Freelance</div>
+          </div>
+        </div>
+        <p class="exp-desc">End-to-end software testing for a client application — manual test case design, functional &amp; regression testing, defect logging and release sign-off documentation.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Manual Testing</span><span class="exp-tag">Test Cases</span>
+          <span class="exp-tag">Functional Testing</span><span class="exp-tag">Defect Tracking</span>
+          <span class="exp-tag">Release Testing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-left">
+            <div class="exp-role">Web Developer &amp; AI Engineer</div>
+            <div class="exp-company">Gemini Jr — Australian Software House</div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-date">2023 – 2024</div>
+            <div class="exp-type">Remote · Part-time</div>
+          </div>
+        </div>
+        <p class="exp-desc">Web development, AI project delivery and project management for Australian software clients. Built frontend UIs, REST API integrations and coordinated cross-functional delivery.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Web Development</span><span class="exp-tag">REST APIs</span>
+          <span class="exp-tag">Project Management</span><span class="exp-tag">AI Projects</span>
+          <span class="exp-tag">React</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dot freelance-dot"></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-left">
+            <div class="exp-role">Freelance Developer</div>
+            <div class="exp-company">Self-employed — Lahore, Pakistan</div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-date">2022 – Present</div>
+            <div class="exp-type">Freelance</div>
+          </div>
+        </div>
+        <p class="exp-desc">Flutter supply chain app (Asisa Crop Sciences), AgriRoute GPS dealer map, NEXUS AI ERP, CLBlast automation tool. Full-stack delivery from requirements to production.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Flutter</span><span class="exp-tag">React</span>
+          <span class="exp-tag">Python</span><span class="exp-tag">AI Integration</span>
+          <span class="exp-tag">Full-Stack</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="ph rev">
+      <div><div class="stag">Selected Work</div><div class="stitle">Real Projects.<br><span class="acc">Real Impact.</span></div></div>
+      <div class="pc"><span>12</span><br>projects shipped</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin:-3rem 0 3rem;position:relative;z-index:1">
+    <a href="#all-projects" style="display:inline-flex;align-items:center;gap:.6rem;font-family:'Fira Code',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--c);border:1px solid rgba(0,229,255,.3);padding:.6rem 1.6rem;text-decoration:none;background:rgba(0,229,255,.05);transition:all .3s" onmouseover="this.style.background='rgba(0,229,255,.14)';this.style.borderColor='rgba(0,229,255,.7)'" onmouseout="this.style.background='rgba(0,229,255,.05)';this.style.borderColor='rgba(0,229,255,.3)'">↓ &nbsp;View All 12 Projects &nbsp;↓</a>
+  </div>
+  <div class="pstack">
+
+    <!-- Project 1: LEO -->
+    <div class="pi rev">
+      <div class="pss" onclick="openContact('LEO — Elderly Care AI System')">
+        <div class="pvis pvis-1">
+          <div class="pvis-icon">&#128065;</div>
+          <div class="pvis-label">LEO<span>Elderly Care System</span></div>
+        </div>
+        <div class="pglow" style="background:linear-gradient(135deg,rgba(16,185,129,.2),transparent 60%)"></div>
+        <div class="pbadge" style="border:1px solid rgba(16,185,129,.5);color:#10b981;background:rgba(3,10,4,.85)">&#127981; FYP — Completed</div>
+        <div class="phover"><div class="pdbtn" style="border-color:#10b981;color:#10b981;background:rgba(16,185,129,.15)">&#128172;&nbsp; Discuss This Project</div></div>
+      </div>
+      <div class="pinfo">
+        <div class="pnum">Project / 01 &mdash; AI &amp; Computer Vision</div>
+        <div class="pname">LEO<br>Elderly Care System</div>
+        <p class="pdesc">Final Year Project — dual <strong style="color:#10b981">YOLOv8 fall detection</strong> with multi-signal scoring, safe zone drawing, Kokoro TTS voice assistant, Qwen 0.5B LLM, <strong style="color:#10b981">Twilio WhatsApp alerts</strong>, FastAPI + MongoDB backend, Flutter app &amp; Flask caregiver dashboard.</p>
+        <div class="ptags"><span class="ptag">YOLOv8</span><span class="ptag">FastAPI</span><span class="ptag">Flutter</span><span class="ptag">Kokoro TTS</span><span class="ptag">Twilio</span><span class="ptag">MongoDB</span></div>
+        <a class="p-dm" onclick="openContact('LEO — Elderly Care AI System')">&#128172;&nbsp; Discuss This Project &nbsp;&#8599;</a>
+      </div>
+    </div>
+
+    <!-- Project 2: Friday AI Companion -->
+    <div class="pi rev">
+      <div class="pss" onclick="openContact('Friday — AI Companion')">
+        <div class="pvis pvis-2">
+          <div class="pvis-icon">&#129302;</div>
+          <div class="pvis-label">FRIDAY<span>AI Companion</span></div>
+        </div>
+        <div class="pglow" style="background:linear-gradient(135deg,rgba(0,229,255,.18),transparent 60%)"></div>
+        <div class="pbadge" style="border:1px solid rgba(0,229,255,.5);color:#00e5ff;background:rgba(2,6,18,.85)">&#127981; Local &amp; Offline</div>
+        <div class="phover"><div class="pdbtn" style="border-color:#00e5ff;color:#00e5ff;background:rgba(0,229,255,.12)">&#128172;&nbsp; Discuss This Project</div></div>
+      </div>
+      <div class="pinfo">
+        <div class="pnum">Project / 02 &mdash; Embodied AI</div>
+        <div class="pname">Friday<br>AI Companion</div>
+        <p class="pdesc">Offline AI companion with <strong style="color:#00e5ff">LBP face recognition</strong>, per-person persistent memory, 3 personality modes, 9-scenario engine, Ursina 3D Sasuke avatar, and proactive face-based greetings. Powered by Qwen2.5 locally.</p>
+        <div class="ptags"><span class="ptag">Face Recognition</span><span class="ptag">Qwen2.5 LLM</span><span class="ptag">Ursina 3D</span><span class="ptag">Python</span><span class="ptag">Offline AI</span></div>
+        <a class="p-dm" onclick="openContact('Friday — AI Companion')">&#128172;&nbsp; Discuss This Project &nbsp;&#8599;</a>
+      </div>
+    </div>
+
+    <!-- Project 3: Anime Dubber -->
+    <div class="pi rev">
+      <div class="pss" onclick="openContact('AnimeDubVoiceCloner — Anime Dubbing Pipeline')">
+        <div class="pvis pvis-3">
+          <div class="pvis-icon">&#127925;</div>
+          <div class="pvis-label">ANIME DUBBER<span>Voice Cloner Pipeline</span></div>
+        </div>
+        <div class="pglow" style="background:linear-gradient(135deg,rgba(124,58,237,.22),transparent 60%)"></div>
+        <div class="pbadge" style="border:1px solid rgba(167,139,250,.5);color:#a78bfa;background:rgba(6,2,15,.85)">&#127981; GPU Accelerated</div>
+        <div class="phover"><div class="pdbtn" style="border-color:#a78bfa;color:#a78bfa;background:rgba(124,58,237,.15)">&#128172;&nbsp; Discuss This Project</div></div>
+      </div>
+      <div class="pinfo">
+        <div class="pnum">Project / 03 &mdash; Audio &amp; NLP</div>
+        <div class="pname">AnimeDub<br>Voice Cloner</div>
+        <p class="pdesc">Full dubbing pipeline: ffmpeg &rarr; Demucs audio separation &rarr; pyannote diarization &rarr; Whisper STT &rarr; Google Translate &rarr; <strong style="color:#a78bfa">XTTS-v2 / Kokoro TTS</strong> &rarr; final mix. 85 segments, 39 min, GPU-accelerated on MX550.</p>
+        <div class="ptags"><span class="ptag">XTTS-v2</span><span class="ptag">Whisper</span><span class="ptag">Demucs</span><span class="ptag">pyannote</span><span class="ptag">FFmpeg</span></div>
+        <a class="p-dm" onclick="openContact('AnimeDubVoiceCloner — Anime Dubbing Pipeline')">&#128172;&nbsp; Discuss This Project &nbsp;&#8599;</a>
+      </div>
+    </div>
+
+    <!-- Project 4: Supply Chain App -->
+    <div class="pi rev">
+      <div class="pss" onclick="openContact('ACS Supply Chain — Warehouse Management App')">
+        <div class="pvis pvis-4">
+          <div class="pvis-icon">&#128230;</div>
+          <div class="pvis-label">ACS SUPPLY CHAIN<span>Warehouse Management</span></div>
+        </div>
+        <div class="pglow" style="background:linear-gradient(135deg,rgba(251,191,36,.18),transparent 60%)"></div>
+        <div class="pbadge" style="border:1px solid rgba(251,191,36,.5);color:#fbbf24;background:rgba(10,6,2,.85)">&#127981; Freelance Delivery</div>
+        <div class="phover"><div class="pdbtn" style="border-color:#fbbf24;color:#fbbf24;background:rgba(251,191,36,.12)">&#128172;&nbsp; Discuss This Project</div></div>
+      </div>
+      <div class="pinfo">
+        <div class="pnum">Project / 04 &mdash; Full-Stack App</div>
+        <div class="pname">ACS Supply Chain<br>Warehouse System</div>
+        <p class="pdesc">Multi-user role-based <strong style="color:#fbbf24">Flutter supply chain app</strong> for Asisa Crop Sciences, Multan. 7-stage order workflow, 6 screens, 60fps PERT canvas for warehouse tracking, real-time dashboards — built with Vite + React 18.</p>
+        <div class="ptags"><span class="ptag">Flutter</span><span class="ptag">React 18</span><span class="ptag">Supply Chain</span><span class="ptag">Role-Based Auth</span><span class="ptag">Freelance</span></div>
+        <a class="p-dm" onclick="openContact('ACS Supply Chain — Warehouse Management App')">&#128172;&nbsp; Discuss This Project &nbsp;&#8599;</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills"><div class="wrap">
+  <div class="rev"><div class="stag">Capabilities</div><div class="stitle">What I <span class="acc">bring to the table</span></div></div>
+  <div class="skgrid rev">
+    <div class="sk"><div class="skicon" style="border-color:rgba(0,229,255,.2);color:var(--c)">&#9673;</div><div class="skname">Computer Vision</div><p class="skdesc">YOLOv8 object detection, MediaPipe pose estimation, OpenCV, face recognition (LBP), hand tracking, expression recognition — built from scratch, not APIs.</p></div>
+    <div class="sk"><div class="skicon" style="border-color:rgba(124,58,237,.25);color:#a78bfa">&#11044;</div><div class="skname">AI &amp; Deep Learning</div><p class="skdesc">YOLOv8, Whisper STT, XTTS-v2, Kokoro ONNX TTS, Qwen LLM, pyannote diarization, Demucs audio separation, transformer architecture from first principles.</p></div>
+    <div class="sk"><div class="skicon" style="border-color:rgba(16,185,129,.2);color:var(--g)">&#8853;</div><div class="skname">Backend &amp; APIs</div><p class="skdesc">FastAPI + MongoDB with JWT auth, Flask dashboards, Railway deployments, Python automation (Selenium/Flask CLBlast), REST API design.</p></div>
+    <div class="sk"><div class="skicon" style="border-color:rgba(251,191,36,.2);color:var(--a)">&#8862;</div><div class="skname">Mobile &amp; Frontend</div><p class="skdesc">Flutter multi-platform apps, React 18 + Vite, role-based auth, real-time dashboards, supply chain UIs with PERT canvas — end-to-end delivery.</p></div>
+    <div class="sk"><div class="skicon" style="border-color:rgba(244,114,182,.2);color:var(--p)">&#8767;</div><div class="skname">3D &amp; Embodied AI</div><p class="skdesc">Ursina/Panda3D rigged FBX character animation, MediaPipe-to-bone control, GLB avatar systems, Mixamo rig (46 bones), 3D pose mirroring.</p></div>
+    <div class="sk"><div class="skicon" style="border-color:rgba(0,229,255,.2);color:var(--c)">&#8734;</div><div class="skname">Vision &amp; Hardware</div><p class="skdesc">Digital image processing theory, OCR without engines, gesture detection, Arduino electronics (beginner), planning hardware integration for JARVIS long-term.</p></div>
+    <div class="sk"><div class="skicon" style="border-color:rgba(239,68,68,.25);color:#f87171">⚙</div><div class="skname">QA &amp; Test Automation</div><p class="skdesc">2+ years QA experience — Selenium + Python automation, manual test cases, API testing, regression cycles, bug reporting. Delivered for Gemini Jr (Australian software house) and freelance clients.</p></div>
+    <div class="sk"><div class="skicon" style="border-color:rgba(251,191,36,.2);color:var(--a)">⬡</div><div class="skname">Web Development</div><p class="skdesc">React 18, Vite, Vanilla JS, HTML5/CSS3, REST API integration, PWA development. Full web apps delivered — supply chain systems, ERP, GPS tools, interactive UIs.</p></div>
+  </div>
+</div></section>
+
+<!-- CONTACT -->
+<section id="contact"><div class="wrap">
+  <div class="ctinner rev">
+    <div class="stag" style="margin:0 auto 2rem;display:inline-flex">Let&apos;s build together</div>
+    <div class="ctbig">Got an idea?<br><span class="hl">Let&apos;s make it real.</span></div>
+    <p class="ctsub">Hit me up on WhatsApp, LinkedIn, GitHub or email. I'm open to freelance, remote roles &amp; interesting AI collabs.</p>
+    <div class="ctlinks">
+      <a href="https://wa.me/923XXXXXXXXX" class="ctlink ctlink-wa" target="_blank">&#128241;&nbsp; WhatsApp</a>
+      <a href="mailto:hunzlakhalid@gmail.com" class="ctlink ctlink-gm" target="_blank">&#9993;&nbsp; Email</a>
+      <a href="https://linkedin.com/in/MuhammadHunzlaKhalid" class="ctlink ctlink-li" target="_blank">&#128279;&nbsp; LinkedIn</a>
+      <a href="https://github.com/MuhammadHunzlaKhalid" class="ctlink ctlink-gh" target="_blank">&#128025;&nbsp; GitHub</a>
+    </div>
+  </div>
+</div></section>
+
+<footer>
+  <div class="fl">Hunzla Khalid &mdash; AI Developer</div>
+  <div class="fr">// building_jarvis_one_commit_at_a_time &copy; 2025</div>
+</footer>
+
+<section id="all-projects">
+
+
+
+
+<!-- HERO -->
+<div class="hero-hdr">
+  <div class="eyebrow">&#127981;&nbsp; 12 projects &nbsp;·&nbsp; 2022–2026</div>
+  <h1 class="hero-title"><span class="g1">All Projects</span></h1>
+  <p class="hero-sub">Every repo, every system — <strong>Computer Vision, AI, NLP, Full-Stack</strong>. Click any card to explore the full breakdown.</p>
+
+  <!-- FILTER -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="cv">Computer Vision</button>
+    <button class="filter-btn" data-filter="ai">AI / LLM</button>
+    <button class="filter-btn" data-filter="nlp">NLP / Audio</button>
+    <button class="filter-btn" data-filter="ml">ML / DL</button>
+    <button class="filter-btn" data-filter="fs">Full-Stack</button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-item"><div class="stat-num">12</div><div class="stat-lbl">Projects</div></div>
+    <div class="stat-item"><div class="stat-num">5+</div><div class="stat-lbl">Languages</div></div>
+    <div class="stat-item"><div class="stat-num">2</div><div class="stat-lbl">Live Systems</div></div>
+    <div class="stat-item"><div class="stat-num">∞</div><div class="stat-lbl">Ambition</div></div>
+  </div>
+</div>
+
+<!-- PROJECTS GRID -->
+<div class="projects-section">
+<div class="pgrid" id="pgrid">
+
+  <!-- 1. LEO FYP — featured -->
+  <div class="card c-cv featured" data-cats="cv ai fs" onclick="openModal('leo')">
+    <div class="card-glow"></div>
+    <div class="card-icon">👁️</div>
+    <div class="card-inner">
+      <div class="card-num">01 / FYP</div>
+      <div class="cat-badge"><span class="status-dot" style="background:var(--c)"></span>Computer Vision · AI</div>
+      <div class="card-title">LEO<br>Elderly Care System</div>
+      <p class="card-desc">Dual YOLOv8 fall detection with multi-signal scoring, Qwen 0.5B voice assistant, Kokoro ONNX TTS, FastAPI + MongoDB backend, Flutter app, Flask caregiver dashboard & Twilio WhatsApp alerts — the full stack.</p>
+      <div class="tech-row">
+        <span class="tech">YOLOv8</span><span class="tech">FastAPI</span><span class="tech">Flutter</span>
+        <span class="tech">MongoDB</span><span class="tech">Kokoro TTS</span><span class="tech">Qwen 0.5B</span>
+        <span class="tech">Twilio</span><span class="tech">OpenCV</span><span class="tech">Python</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a href="https://github.com/MuhammadHunzlaKhalid/LEO-FYP" target="_blank" class="card-link" onclick="event.stopPropagation()">&#128025; Repo &#8599;</a>
+        </div>
+        <button class="card-details-btn" onclick="event.stopPropagation();openModal('leo')">Details &#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Friday AI Companion -->
+  <div class="card c-ai" data-cats="ai cv" onclick="openModal('friday')">
+    <div class="card-glow"></div>
+    <div class="card-icon">🤖</div>
+    <div class="card-inner">
+      <div class="card-num">02</div>
+      <div class="cat-badge"><span class="status-dot" style="background:#a78bfa"></span>AI · Embodied</div>
+      <div class="card-title">Friday<br>AI Companion</div>
+      <p class="card-desc">Offline AI companion with LBP face recognition, per-person persistent memory, 3 personality modes, Ursina 3D Sasuke avatar, and proactive face-based greetings.</p>
+      <div class="tech-row">
+        <span class="tech">Qwen2.5</span><span class="tech">Ursina 3D</span><span class="tech">OpenCV</span>
+        <span class="tech">LBP Face Rec</span><span class="tech">pyttsx3</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a href="https://github.com/MuhammadHunzlaKhalid/Friday-AI-Companion" target="_blank" class="card-link" onclick="event.stopPropagation()">&#128025; Repo &#8599;</a>
+        </div>
+        <button class="card-details-btn" onclick="event.stopPropagation();openModal('friday')">Details &#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Anime Dubber -->
+  <div class="card c-nlp" data-cats="nlp ai" onclick="openModal('animedub')">
+    <div class="card-glow"></div>
+    <div class="card-icon">🎵</div>
+    <div class="card-inner">
+      <div class="card-num">03</div>
+      <div class="cat-badge"><span class="status-dot" style="background:var(--g)"></span>NLP · Audio AI</div>
+      <div class="card-title">AnimeDub<br>Voice Cloner</div>
+      <p class="card-desc">Full dubbing pipeline: Demucs audio separation → pyannote diarization → Whisper STT → Google Translate → XTTS-v2/Kokoro TTS → final mix. GPU-accelerated, 85 segments, 39 min.</p>
+      <div class="tech-row">
+        <span class="tech">XTTS-v2</span><span class="tech">Whisper</span><span class="tech">Demucs</span>
+        <span class="tech">pyannote</span><span class="tech">FFmpeg</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a href="https://github.com/MuhammadHunzlaKhalid" target="_blank" class="card-link" onclick="event.stopPropagation()">&#128025; GitHub &#8599;</a>
+        </div>
+        <button class="card-details-btn" onclick="event.stopPropagation();openModal('animedub')">Details &#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. OCR -->
+  <div class="card c-cv" data-cats="cv ml" onclick="openModal('ocr')">
+    <div class="card-glow"></div>
+    <div class="card-icon">🔍</div>
+    <div class="card-inner">
+      <div class="card-num">04</div>
+      <div class="cat-badge"><span class="status-dot" style="background:var(--c)"></span>Computer Vision</div>
+      <div class="card-title">OCR System<br>No Pre-built Engine</div>
+      <p class="card-desc">Optical Character Recognition built from scratch — detects and extracts text from images/scanned documents without relying on Tesseract or cloud APIs.</p>
+      <div class="tech-row">
+        <span class="tech">OpenCV</span><span class="tech">Python</span><span class="tech">Image Processing</span><span class="tech">NumPy</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a href="https://github.com/MuhammadHunzlaKhalid/OCR-Optical-Character-Recognition-" target="_blank" class="card-link" onclick="event.stopPropagation()">&#128025; Repo &#8599;</a>
+        </div>
+        <button class="card-details-btn" onclick="event.stopPropagation();openModal('ocr')">Details &#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. NER BiLSTM -->
+  <div class="card c-ml" data-cats="ml nlp" onclick="openModal('ner')">
+    <div class="card-glow"></div>
+    <div class="card-icon">🏷️</div>
+    <div class="card-inner">
+      <div class="card-num">05</div>
+      <div class="cat-badge"><span class="status-dot" style="background:var(--p)"></span>ML · NLP</div>
+      <div class="card-title">Named Entity<br>Recognition BiLSTM</div>
+      <p class="card-desc">BiLSTM model in PyTorch for classifying persons, locations and organizations from text. Strong benchmark results on standard NER evaluation.</p>
+      <div class="tech-row">
+        <span class="tech">PyTorch</span><span class="tech">BiLSTM</span><span class="tech">NLP</span><span class="tech">Python</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a href="https://github.com/MuhammadHunzlaKhalid/Named-Entity-Recognition-" target="_blank" class="card-link" onclick="event.stopPropagation()">&#128025; Repo &#8599;</a>
+        </div>
+        <button class="card-details-btn" onclick="event.stopPropagation();openModal('ner')">Details &#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Next Word Prediction -->
+  <div class="card c-ml" data-cats="ml nlp" onclick="openModal('nwp')">
+    <div class="card-glow"></div>
+    <div class="card-icon">💬</div>
+    <div class="card-inner">
+      <div class="card-num">06</div>
+      <div class="cat-badge"><span class="status-dot" style="background:var(--p)"></span>ML · NLP</div>
+      <div class="card-title">Next Word<br>Prediction LSTM</div>
+      <p class="card-desc">Sequence-to-sequence next word prediction using LSTM architecture. Trained on text corpora with word embeddings and recurrent memory.</p>
+      <div class="tech-row">
+        <span class="tech">LSTM</span><span class="tech">Python</span><span class="tech">PyTorch</span><span class="tech">Word Embeddings</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a href="https://github.com/MuhammadHunzlaKhalid/Next-Word-Prediction-" target="_blank" class="card-link" onclick="event.stopPropagation()">&#128025; Repo &#8599;</a>
+        </div>
+        <button class="card-details-btn" onclick="event.stopPropagation();openModal('nwp')">Details &#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. QA Bot -->
+  <div class="card c-ml" data-cats="ml nlp ai" onclick="openModal('qabot')">
+    <div class="card-glow"></div>
+    <div class="card-icon">❓</div>
+    <div class="card-inner">
+      <div class="card-num">07</div>
+      <div class="cat-badge"><span class="status-dot" style="background:var(--p)"></span>ML · RNN</div>
+      <div class="card-title">Question Answer<br>Bot RNN</div>
+      <p class="card-desc">Question answering bot built using a Recurrent Neural Network. Processes question-answer pairs and generates contextual responses from learned patterns.</p>
+      <div class="tech-row">
+        <span class="tech">RNN</span><span class="tech">Python</span><span class="tech">NLP</span><span class="tech">Seq2Seq</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a href="https://github.com/MuhammadHunzlaKhalid/Question-Answer-bot" target="_blank" class="card-link" onclick="event.stopPropagation()">&#128025; Repo &#8599;</a>
+        </div>
+        <button class="card-details-btn" onclick="event.stopPropagation();openModal('qabot')">Details &#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Interactive Paint -->
+  <div class="card c-cv" data-cats="cv" onclick="openModal('paint')">
+    <div class="card-glow"></div>
+    <div class="card-icon">🎨</div>
+    <div class="card-inner">
+      <div class="card-num">08</div>
+      <div class="cat-badge"><span class="status-dot" style="background:var(--c)"></span>Computer Vision</div>
+      <div class="card-title">Interactive Paint<br>Application</div>
+      <p class="card-desc">Real-time paint app using Python & OpenCV. Mouse event handling, dynamic canvas rendering, draw-by-drag. Foundation for gesture-based drawing systems.</p>
+      <div class="tech-row">
+        <span class="tech">OpenCV</span><span class="tech">Python</span><span class="tech">Mouse Events</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a href="https://github.com/MuhammadHunzlaKhalid/Interactive-Paint-Application" target="_blank" class="card-link" onclick="event.stopPropagation()">&#128025; Repo &#8599;</a>
+        </div>
+        <button class="card-details-btn" onclick="event.stopPropagation();openModal('paint')">Details &#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. ACS Supply Chain -->
+  <div class="card c-fs" data-cats="fs" onclick="openModal('acs')">
+    <div class="card-glow"></div>
+    <div class="card-icon">📦</div>
+    <div class="card-inner">
+      <div class="card-num">09 / Freelance</div>
+      <div class="cat-badge"><span class="status-dot" style="background:var(--a)"></span>Full-Stack · Mobile</div>
+      <div class="card-title">ACS Supply Chain<br>Warehouse System</div>
+      <p class="card-desc">Multi-user role-based Flutter + React 18 app for Asisa Crop Sciences, Multan. 7-stage order workflow, 60fps PERT canvas tracker, real-time dashboards — delivered as freelance.</p>
+      <div class="tech-row">
+        <span class="tech">Flutter</span><span class="tech">React 18</span><span class="tech">Vite</span><span class="tech">Role Auth</span><span class="tech">PERT Canvas</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-links">
+          <a href="https://github.com/MuhammadHunzlaKhalid" target="_blank" class="card-link" onclick="event.stopPropagation()">&#128025; GitHub &#8599;</a>
+        </div>
+        <button class="card-details-btn" onclick="event.stopPropagation();openModal('acs')">Details &#8594;</button>
+      </div>
+    </div>
+  
+  <!-- 10. AgriRoute -->
+  <div class="card c-fs" data-cats="fs ai" onclick="openModal('agrimap')">
+    <div class="card-glow"></div><div class="card-icon">🗺️</div>
+    <div class="card-inner">
+      <div class="card-num">10 / Freelance</div>
+      <div class="cat-badge"><span class="status-dot" style="background:var(--a)"></span>Full-Stack · Maps · AI</div>
+      <div class="card-title">AgriRoute<br>Offline Dealer Map</div>
+      <p class="card-desc">Leaflet.js offline GPS routing for Asia CropSciences — 500+ dealers across Pakistan, multi-stop route optimisation, region filters, offline PWA. Built for field reps.</p>
+      <div class="tech-row"><span class="tech">Leaflet.js</span><span class="tech">JavaScript</span><span class="tech">GPS Routing</span><span class="tech">Offline PWA</span><span class="tech">OpenStreetMap</span></div>
+      <div class="card-footer">
+        <a href="https://github.com/MuhammadHunzlaKhalid" target="_blank" class="card-link" onclick="event.stopPropagation()">💻 GitHub ↗</a>
+        <button class="card-details-btn" onclick="event.stopPropagation();openModal('agrimap')">Details →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. ACS Full Enterprise -->
+  <div class="card c-fs featured" data-cats="fs ai" onclick="openModal('acsfull')">
+    <div class="card-glow"></div><div class="card-icon">🏭</div>
+    <div class="card-inner">
+      <div class="card-num">11 / Freelance</div>
+      <div class="cat-badge"><span class="status-dot" style="background:var(--a)"></span>Full-Stack · Enterprise · AI</div>
+      <div class="card-title">ACS Supply Chain<br>Full Enterprise System</div>
+      <p class="card-desc">Complete multi-role supply chain system — 8 pages, full order lifecycle (create → HO verify → bilty → dispatch → delivery), dealer accounts, scan-verify, slips &amp; docs. AI anomaly detection. PWA.</p>
+      <div class="tech-row"><span class="tech">Vanilla JS</span><span class="tech">PWA</span><span class="tech">Role Auth</span><span class="tech">8 Pages</span><span class="tech">Barcode Scan</span><span class="tech">AI</span></div>
+      <div class="card-footer">
+        <a href="https://github.com/MuhammadHunzlaKhalid" target="_blank" class="card-link" onclick="event.stopPropagation()">💻 GitHub ↗</a>
+        <button class="card-details-btn" onclick="event.stopPropagation();openModal('acsfull')">Details →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. NEXUS AI ERP -->
+  <div class="card c-ai" data-cats="ai fs" onclick="openModal('nexus')">
+    <div class="card-glow"></div><div class="card-icon">⚡</div>
+    <div class="card-inner">
+      <div class="card-num">12</div>
+      <div class="cat-badge"><span class="status-dot" style="background:#a78bfa"></span>AI · Full-Stack · ERP</div>
+      <div class="card-title">NEXUS<br>Universal AI ERP</div>
+      <p class="card-desc">JARVIS-powered universal ERP — 3-step AI wizard generates custom modules per business. Invoices, inventory, CRM, supply chain. Multi-language AI chat: English, Hinglish, Arabic, French.</p>
+      <div class="tech-row"><span class="tech">AI JARVIS Chat</span><span class="tech">ERP</span><span class="tech">Invoices</span><span class="tech">Inventory</span><span class="tech">Multi-Language</span><span class="tech">JavaScript</span></div>
+      <div class="card-footer">
+        <a href="https://github.com/MuhammadHunzlaKhalid" target="_blank" class="card-link" onclick="event.stopPropagation()">💻 GitHub ↗</a>
+        <button class="card-details-btn" onclick="event.stopPropagation();openModal('nexus')">Details →</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════ MODAL ═══════════════ -->
+<div id="modal-overlay" onclick="closeProjModal(event)">
+  <div class="modal" id="modal-box">
+    <div class="modal-accent" id="modal-accent"></div>
+    <div class="modal-close"><button class="close-btn" onclick="closeProjModal()">✕</button></div>
+    <div class="modal-body" id="modal-body">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+</section>
+
+
+
+<!-- WA Float -->
+<a href="https://wa.me/923XXXXXXXXX" id="wa-float2" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 3C8.82 3 3 8.82 3 16c0 2.42.65 4.7 1.79 6.67L3 29l6.54-1.71A12.94 12.94 0 0016 29c7.18 0 13-5.82 13-13S23.18 3 16 3z" fill="white" fill-opacity=".15"/>
+    <path d="M16 4.5C9.65 4.5 4.5 9.65 4.5 16c0 2.3.62 4.46 1.71 6.32L4.5 27.5l5.32-1.69A11.44 11.44 0 0016 27.5c6.35 0 11.5-5.15 11.5-11.5S22.35 4.5 16 4.5z" fill="white" fill-opacity=".9"/>
+    <path d="M21.5 18.9c-.3-.15-1.76-.87-2.03-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.63-.93-2.23-.24-.58-.49-.5-.68-.51-.17 0-.37-.02-.57-.02-.2 0-.52.07-.79.37-.27.3-1.03 1-1.03 2.45 0 1.44 1.05 2.84 1.2 3.03.15.2 2.07 3.16 5.02 4.43.7.3 1.25.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.76-.72 2.01-1.41.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.34z" fill="#25d366"/>
+  </svg>
+</a>
+<!-- ════ FRIDAY LAUNCHER MODAL ════ -->
+<div class="copied-toast" id="copied-toast"></div>
+<div id="launcher-modal" onclick="closeLauncher(event)">
+  <div class="launch-box" onclick="event.stopPropagation()">
+    <button class="launch-close" onclick="closeLauncher()">✕</button>
+    <div class="launch-head">
+      <div class="launch-title">⚡ Run Friday Locally</div>
+      <div class="launch-sub">// your Qwen model · D:\Python\FYP\Models\</div>
+    </div>
+    <div class="launch-steps">
+
+      <div class="launch-step">
+        <div class="launch-step-num">1</div>
+        <div class="launch-step-body">
+          <div class="launch-step-title">Download the server file</div>
+          <div class="launch-step-desc">// save in the same folder as this HTML</div>
+          <div class="launch-dl-row">
+            <button class="launch-dl-btn launch-dl-py" onclick="downloadServerPy()">⬇ friday_server.py</button>
+            <button class="launch-dl-btn launch-dl-bat" onclick="downloadBat()">⬇ run_friday.bat</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="launch-step">
+        <div class="launch-step-num">2</div>
+        <div class="launch-step-body">
+          <div class="launch-step-title">Install dependencies (once only)</div>
+          <div class="launch-step-desc">// open CMD in the folder and run:</div>
+          <div class="launch-cmd" onclick="copyCmd('pip install flask flask-cors transformers torch accelerate')">
+            <span class="launch-cmd-text">pip install flask flask-cors transformers torch accelerate</span>
+            <span class="launch-cmd-copy">copy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="launch-step">
+        <div class="launch-step-num">3</div>
+        <div class="launch-step-body">
+          <div class="launch-step-title">Start the server</div>
+          <div class="launch-step-desc">// double-click run_friday.bat  OR  run in CMD:</div>
+          <div class="launch-cmd" onclick="copyCmd('python friday_server.py')">
+            <span class="launch-cmd-text">python friday_server.py</span>
+            <span class="launch-cmd-copy">copy</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="launch-status-row">
+      <div class="launch-status-dot" id="launch-dot"></div>
+      <span class="launch-status-txt" id="launch-status-txt">Checking server...</span>
+      <button class="launch-open-btn" id="launch-open-btn" onclick="openFridayFromLauncher()" disabled>
+        Open Friday →
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FRIDAY CHAT WIDGET ════ -->
+
+<!-- Floating icon -->
+<div id="friday-fab" onclick="togglePicker()">
+  <div class="friday-label">Chat with Friday</div>
+  <div class="friday-ring">
+    <div class="friday-inner">
+      <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="16" r="7" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,0.08)"/>
+        <circle cx="16" cy="16" r="2.5" fill="#a78bfa"/>
+        <line x1="16" y1="4" x2="16" y2="9" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="16" y1="23" x2="16" y2="28" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="4" y1="16" x2="9" y2="16" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="23" y1="16" x2="28" y2="16" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="7.5" y1="7.5" x2="11" y2="11" stroke="#00e5ff" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="21" y1="21" x2="24.5" y2="24.5" stroke="#00e5ff" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="24.5" y1="7.5" x2="21" y2="11" stroke="#a78bfa" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="11" y1="21" x2="7.5" y2="24.5" stroke="#a78bfa" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="16" cy="4" r="1.8" fill="#00e5ff"/>
+        <circle cx="16" cy="28" r="1.8" fill="#00e5ff"/>
+        <circle cx="4" cy="16" r="1.8" fill="#a78bfa"/>
+        <circle cx="28" cy="16" r="1.8" fill="#a78bfa"/>
+      </svg>
+      <div class="friday-pulse"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Bot picker -->
+<div id="chat-picker" onclick="closePicker(event)">
+  <div class="picker-card" onclick="event.stopPropagation()">
+    <div class="picker-head">
+      Choose your AI
+      <div class="picker-sub">// pick who you want to talk to</div>
+    </div>
+    <div class="picker-options">
+      <button class="picker-opt" onclick="openChat('friday')" style="position:relative">
+        <div class="picker-opt-icon friday-ico">🤖</div>
+        <div class="picker-opt-info">
+          <div class="picker-opt-name">Friday <span style="font-family:'Fira Code',monospace;font-size:.58rem;letter-spacing:.1em;color:var(--c);border:1px solid rgba(0,229,255,.25);padding:.1rem .4rem;margin-left:.4rem;vertical-align:middle">local AI</span></div>
+          <div class="picker-opt-desc">// Qwen on your disk · 3 personalities · offline</div>
+        </div>
+        <div class="picker-opt-arrow">→</div>
+      </button>
+      <button class="picker-opt" onclick="closePicker(event);openLauncher()" style="border-top:1px dashed rgba(0,229,255,.1)">
+        <div class="picker-opt-icon friday-ico" style="font-size:.9rem">⚡</div>
+        <div class="picker-opt-info">
+          <div class="picker-opt-name" style="font-size:.8rem">Setup Local Server</div>
+          <div class="picker-opt-desc">// download friday_server.py · run in CMD</div>
+        </div>
+        <div class="picker-opt-arrow">→</div>
+      </button>
+      <button class="picker-opt" onclick="openChat('gpt')">
+        <div class="picker-opt-icon gpt-ico">✨</div>
+        <div class="picker-opt-info">
+          <div class="picker-opt-name">GPT-4o</div>
+          <div class="picker-opt-desc">// OpenAI · bring your own API key</div>
+        </div>
+        <div class="picker-opt-arrow">→</div>
+      </button>
+    </div>
+    <div class="picker-note">// Friday personality by Hunzla Khalid</div>
+  </div>
+</div>
+
+<!-- Chat window -->
+<div id="chat-win">
+  <div class="chat-win-accent" id="chat-accent"></div>
+  <div class="chat-win-head">
+    <div class="chat-win-av" id="chat-av">🤖</div>
+    <div class="chat-win-info">
+      <div class="chat-win-name" id="chat-name">Friday</div>
+      <div class="chat-win-status"><div class="chat-status-dot"></div><span id="chat-status">online</span></div>
+    </div>
+    <span class="chat-mode-badge friend-mode" id="mode-badge" onclick="cycleMode()" title="Click to change personality">friend</span>
+    <div class="chat-win-btns">
+      <button class="chat-win-btn" onclick="clearChat()" title="Clear chat">🗑</button>
+      <button class="chat-win-btn" onclick="closeChat()">✕</button>
+    </div>
+  </div>
+  <div id="server-status-row" style="display:none;align-items:center;justify-content:space-between;padding:.55rem 1.1rem;border-bottom:1px solid rgba(255,255,255,.05);background:rgba(0,0,0,.2);flex-shrink:0">
+    <span id="server-badge" style="font-family:'Fira Code',monospace;font-size:.6rem;letter-spacing:.12em;color:rgba(241,245,249,.3);border:1px solid rgba(255,255,255,.1);padding:.2rem .6rem;border-radius:2px">⬤ checking...</span>
+    <div id="model-switch-row" style="display:none;gap:.4rem">
+      <button onclick="switchModel('0.5b')" style="font-family:'Fira Code',monospace;font-size:.58rem;letter-spacing:.1em;padding:.2rem .55rem;border:1px solid rgba(0,229,255,.25);color:var(--c);background:rgba(0,229,255,.05);cursor:pointer;border-radius:2px">0.5B</button>
+      <button onclick="switchModel('1.5b')" style="font-family:'Fira Code',monospace;font-size:.58rem;letter-spacing:.1em;padding:.2rem .55rem;border:1px solid rgba(124,58,237,.3);color:#a78bfa;background:rgba(124,58,237,.05);cursor:pointer;border-radius:2px">1.5B</button>
+    </div>
+  </div>
+  <div id="gpt-key-row" class="gpt-key-row" style="display:none">
+    <div class="gpt-key-label">// OpenAI API Key (stored in session only)</div>
+    <div class="gpt-key-input-row">
+      <input type="password" class="gpt-key-inp" id="gpt-key-inp" placeholder="sk-..."/>
+      <button class="gpt-key-btn" onclick="saveGptKey()">Connect</button>
+    </div>
+    <div class="gpt-key-note">// key never leaves your browser</div>
+  </div>
+  <div class="chat-msgs" id="chat-msgs">
+    <!-- welcome screen -->
+    <div class="chat-welcome" id="chat-welcome">
+      <div class="chat-welcome-av" id="welcome-av" style="background:linear-gradient(135deg,var(--v),var(--c))">🤖</div>
+      <div class="chat-welcome-name" id="welcome-name">Hey, I'm Friday</div>
+      <div class="chat-welcome-sub" id="welcome-sub">// AI companion by Hunzla Khalid</div>
+      <div class="chat-suggestion-row" id="sugg-row"></div>
+    </div>
+  </div>
+  <div class="chat-input-row">
+    <textarea class="chat-input" id="chat-input" placeholder="Say something..." rows="1"
+      onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+    <button class="chat-send-btn" id="send-btn" onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+<script>
+(function(){
+
+// CONTACT MODAL
+var cmodal = document.getElementById('cmodal');
+var cprojname = document.getElementById('cprojname');
+
+window.openContact = function(proj) {
+  cprojname.textContent = proj;
+  cmodal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+
+document.getElementById('cmclose').addEventListener('click', function(){
+  cmodal.classList.remove('open');
+  document.body.style.overflow = '';
+});
+
+cmodal.addEventListener('click', function(e){
+  if(e.target === cmodal){ cmodal.classList.remove('open'); document.body.style.overflow = ''; }
+});
+
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){ cmodal.classList.remove('open'); document.body.style.overflow = ''; }
+});
+
+// PARTICLES
+var cvs = document.getElementById('cvs');
+var ctx = cvs.getContext('2d');
+var W, H;
+function rs(){ W=cvs.width=window.innerWidth; H=cvs.height=window.innerHeight; }
+rs(); window.addEventListener('resize', rs);
+var pts = [];
+for(var i=0;i<110;i++){
+  pts.push({x:Math.random()*2000,y:Math.random()*1200,vx:(Math.random()-.5)*.38,vy:(Math.random()-.5)*.38,r:Math.random()*1.2+.3,a:Math.random()*.28+.07,c:Math.random()>.55?'0,229,255':'124,58,237'});
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  for(var i=0;i<pts.length;i++){
+    var p=pts[i]; p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle='rgba('+p.c+','+p.a+')'; ctx.fill();
+  }
+  for(var i=0;i<pts.length;i++){
+    for(var j=i+1;j<pts.length;j++){
+      var dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<120){ ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.strokeStyle='rgba(0,229,255,'+(0.05*(1-d/120))+')'; ctx.lineWidth=.5; ctx.stroke(); }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+
+// SCROLL REVEAL
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry, i){
+    if(entry.isIntersecting){
+      (function(el, delay){ setTimeout(function(){ el.classList.add('on'); }, delay); })(entry.target, i*80);
+    }
+  });
+}, {threshold:.1});
+document.querySelectorAll('.rev').forEach(function(el){ obs.observe(el); });
+
+// PARALLAX
+window.addEventListener('scroll', function(){
+  var s=window.scrollY;
+  document.querySelectorAll('.orb').forEach(function(o,i){ o.style.transform='translateY('+(s*(i*.08+.04))+'px)'; });
+});
+
+})();
+
+// ═══ ALL-PROJECTS FILTER + MODAL ═══
+// ═══ FILTER ═══
+document.querySelectorAll('.filter-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    var f=btn.dataset.filter;
+    document.querySelectorAll('.card').forEach(function(card){
+      if(f==='all'||card.dataset.cats.includes(f)){card.classList.remove('hidden')}
+      else{card.classList.add('hidden')}
+    });
+  });
+});
+
+// ═══ PROJECT DATA ═══
+var projects = {
+  leo:{
+    accent:'linear-gradient(90deg,#00e5ff,#7c3aed,#f472b6)',
+    eyebrow:'Computer Vision · AI · Full-Stack',
+    eyeColor:'#00e5ff',
+    title:'LEO',
+    subtitle:'Elderly Care & Fall Detection System — Final Year Project, GCU Lahore 2026',
+    desc:'LEO is a comprehensive AI-powered elderly care system built as a Final Year Project. At its core is a <strong>dual YOLOv8 fall detection</strong> pipeline that uses multi-signal confidence scoring to minimise false positives. Caregivers draw custom safe zones on a live feed — any fall outside these zones instantly fires a <strong>Twilio WhatsApp alert</strong> with a 30-second video clip.',
+    features:[
+      'Dual YOLOv8 fall detection with multi-signal scoring (pose + bounding box confidence fusion)',
+      'Caregiver-drawn safe zones via OpenCV canvas — alerts only triggered outside safe areas',
+      'Kokoro ONNX TTS voice assistant with Qwen 0.5B on-device LLM for resident interaction',
+      'FastAPI + MongoDB backend with JWT authentication and role-based access',
+      'Flutter 12-screen mobile app for real-time monitoring and alert history',
+      'CustomTkinter desktop GUI for facility operators with live video feed',
+      'Flask caregiver web dashboard with incident timeline and export',
+      'Twilio WhatsApp integration — sends fall clip + location within seconds',
+      'Full thesis documentation (~70 pages) following GCU academic template'
+    ],
+    stats:[{v:'Dual',l:'YOLOv8 Models'},{v:'12',l:'Flutter Screens'},{v:'FYP',l:'2026 Viva'}],
+    tech:['YOLOv8','FastAPI','MongoDB','Flutter','Flask','Kokoro ONNX','Qwen 0.5B LLM','Twilio WhatsApp','OpenCV','JWT Auth','Python','CustomTkinter'],
+    github:'https://github.com/MuhammadHunzlaKhalid/LEO-FYP',
+    live:null
+  },
+  friday:{
+    accent:'linear-gradient(90deg,#7c3aed,#a78bfa,#c4b5fd)',
+    eyebrow:'AI · Embodied Companion',
+    eyeColor:'#a78bfa',
+    title:'Friday',
+    subtitle:'Offline AI Companion with 3D Avatar & Face Memory — Local, Private, Always On',
+    desc:'Friday is a fully offline AI companion inspired by JARVIS. It uses <strong>LBP face recognition</strong> to identify who it\'s talking to, loading that person\'s unique persistent memory and adapting its personality accordingly. A Ursina 3D Sasuke avatar with a Mixamo rig reacts in real time.',
+    features:[
+      'LBP face recognition — identifies users from a pre-trained model (pkl file)',
+      'Per-person persistent memory stored as JSON — remembers conversations across sessions',
+      '3 personality modes: Friend, Flirty, Bold — toggled per user preference',
+      '9-scenario conversation engine for contextual, non-repetitive replies',
+      'Proactive greeting system — speaks first when it recognises your face',
+      'Ursina 3D Sasuke GLB avatar with Blender mesh nodes (rinnegan, sharingan, wajah, etc.)',
+      'Qwen2.5-text-3B-Instruct-Uncensored as the local language model',
+      'pyttsx3 TTS in daemon thread for non-blocking speech output',
+      'Fully offline — no API keys, no cloud, runs on laptop GPU (MX550)'
+    ],
+    stats:[{v:'3',l:'Personalities'},{v:'9',l:'Scenarios'},{v:'100%',l:'Offline'}],
+    tech:['Qwen2.5-3B','LBP Face Recognition','Ursina 3D','pyttsx3','OpenCV','Python','Mixamo FBX','JSON Memory'],
+    github:'https://github.com/MuhammadHunzlaKhalid/Friday-AI-Companion',
+    live:null
+  },
+  animedub:{
+    accent:'linear-gradient(90deg,#10b981,#059669,#34d399)',
+    eyebrow:'NLP · Audio AI · Voice Cloning',
+    eyeColor:'#10b981',
+    title:'AnimeDub VoiceCloner',
+    subtitle:'End-to-End Anime Dubbing Pipeline with Multi-Character Voice Cloning',
+    desc:'A complete automated dubbing pipeline that takes a raw anime episode and produces a fully dubbed audio track with cloned character voices. Runs <strong>GPU-accelerated on MX550 2GB</strong> — processing 85 segments and 39 minutes of content.',
+    features:[
+      'ffmpeg for audio extraction, mixing, and final output rendering',
+      'Demucs for music/vocal source separation — isolates dialogue from BGM',
+      'pyannote diarization — identifies who is speaking in each segment',
+      'Whisper STT — transcribes Japanese/original language with high accuracy',
+      'Google Translate API — translates transcribed text to target language',
+      'XTTS-v2 (run_v1) — confirmed working with 85 segments, 39 min runtime',
+      'Kokoro ONNX TTS as alternative voice engine for lighter inference',
+      'run_v2/v3 add multi-character diarization and emotion detection pipeline',
+      'ASS and SRT subtitle format parser for syncing translated text',
+      'All models downloaded locally to ./models/ folder — no repeated downloads'
+    ],
+    stats:[{v:'85',l:'Segments'},{v:'39min',l:'Episode'},{v:'GPU',l:'MX550 2GB'}],
+    tech:['XTTS-v2','Whisper','Demucs','pyannote','FFmpeg','Kokoro ONNX','Google Translate','Python 3.10','CUDA','transformers 4.39.3'],
+    github:'https://github.com/MuhammadHunzlaKhalid',
+    live:null
+  },
+  ocr:{
+    accent:'linear-gradient(90deg,#00e5ff,#0891b2)',
+    eyebrow:'Computer Vision · Image Processing',
+    eyeColor:'#00e5ff',
+    title:'OCR System',
+    subtitle:'Optical Character Recognition — Built from Scratch Without Pre-built Engines',
+    desc:'An OCR system built without Tesseract, Google Vision, or any pre-built recognition engine. Implements the full pipeline from raw image → character segmentation → feature extraction → recognition using classical and learned techniques.',
+    features:[
+      'Handles various image formats — scanned documents, photos, screenshots',
+      'Preprocessing pipeline: binarisation, noise removal, deskewing, normalisation',
+      'Connected component analysis for character segmentation',
+      'Feature extraction using custom descriptors (no pre-built OCR libs)',
+      'Classifier for character recognition trained on standard character datasets',
+      'Post-processing: word/line reconstruction and output formatting'
+    ],
+    stats:[{v:'0',l:'Pre-built APIs'},{v:'Full',l:'Pipeline'},{v:'Python',l:'Pure'}],
+    tech:['OpenCV','Python','NumPy','SciPy','Image Processing','Machine Learning'],
+    github:'https://github.com/MuhammadHunzlaKhalid/OCR-Optical-Character-Recognition-',
+    live:null
+  },
+  ner:{
+    accent:'linear-gradient(90deg,#f472b6,#ec4899)',
+    eyebrow:'ML · Natural Language Processing',
+    eyeColor:'#f472b6',
+    title:'Named Entity Recognition',
+    subtitle:'BiLSTM Neural Network for Entity Classification in PyTorch',
+    desc:'A Named Entity Recognition system using a <strong>Bidirectional LSTM</strong> in PyTorch. Classifies named entities — persons, locations, organisations — from raw text sequences with competitive evaluation benchmarks.',
+    features:[
+      'Bidirectional LSTM architecture for capturing forward and backward context',
+      'Classifies PERSON, LOCATION, ORGANISATION and OTHER entity classes',
+      'Character-level and word-level feature fusion for rare/OOV word handling',
+      'Pre-trained word embeddings fine-tuned on NER corpora',
+      'CRF layer for sequence-level prediction consistency',
+      'Evaluated on standard NER benchmarks with strong F1 scores'
+    ],
+    stats:[{v:'BiLSTM',l:'Architecture'},{v:'3+',l:'Entity Types'},{v:'PyTorch',l:'Framework'}],
+    tech:['PyTorch','BiLSTM','CRF','Word Embeddings','Python','NLP','sklearn'],
+    github:'https://github.com/MuhammadHunzlaKhalid/Named-Entity-Recognition-',
+    live:null
+  },
+  nwp:{
+    accent:'linear-gradient(90deg,#f472b6,#a855f7)',
+    eyebrow:'ML · Language Model',
+    eyeColor:'#f472b6',
+    title:'Next Word Prediction',
+    subtitle:'LSTM Language Model for Sequential Text Prediction',
+    desc:'A next-word prediction system using LSTM architecture. Trained on text corpora with word-level tokenisation and learned embeddings to predict the most likely next token in a sequence.',
+    features:[
+      'LSTM with configurable hidden layers and embedding dimensions',
+      'Word-level tokenisation with vocabulary lookup table',
+      'Trained on text corpora — supports custom dataset fine-tuning',
+      'Beam search and greedy decoding for next-word generation',
+      'Temperature-controlled sampling for varied / creative outputs',
+      'Perplexity evaluation on held-out test sets'
+    ],
+    stats:[{v:'LSTM',l:'Architecture'},{v:'Word',l:'Level'},{v:'Python',l:'Stack'}],
+    tech:['LSTM','PyTorch','Python','Word Embeddings','NLP','Text Processing'],
+    github:'https://github.com/MuhammadHunzlaKhalid/Next-Word-Prediction-',
+    live:null
+  },
+  qabot:{
+    accent:'linear-gradient(90deg,#f472b6,#e879f9)',
+    eyebrow:'ML · RNN · Conversational AI',
+    eyeColor:'#f472b6',
+    title:'Question Answer Bot',
+    subtitle:'RNN-Based Question Answering System',
+    desc:'A question answering bot using a Recurrent Neural Network. Processes QA pairs and learns to generate contextual answers from input questions using encoder-decoder seq2seq architecture.',
+    features:[
+      'Encoder-Decoder RNN (seq2seq) for question-to-answer mapping',
+      'Attention mechanism for focusing on relevant parts of the input',
+      'Trained on QA dataset pairs with vocabulary preprocessing',
+      'Handles variable-length input questions and output answers',
+      'Beam search decoding for higher-quality answer generation',
+      'Foundation for more advanced conversational AI systems'
+    ],
+    stats:[{v:'RNN',l:'Architecture'},{v:'Seq2Seq',l:'Pattern'},{v:'Python',l:'Stack'}],
+    tech:['RNN','PyTorch','Seq2Seq','Attention','Python','NLP'],
+    github:'https://github.com/MuhammadHunzlaKhalid/Question-Answer-bot',
+    live:null
+  },
+  paint:{
+    accent:'linear-gradient(90deg,#00e5ff,#38bdf8)',
+    eyebrow:'Computer Vision · Real-Time',
+    eyeColor:'#00e5ff',
+    title:'Interactive Paint',
+    subtitle:'Real-Time Drawing Application Using OpenCV Mouse Events',
+    desc:'A simple but complete paint application using Python and OpenCV. Demonstrates real-time mouse event handling and dynamic canvas rendering — a foundation project for gesture-controlled drawing systems built later.',
+    features:[
+      'Real-time mouse event capture — click, drag, release drawing',
+      'Dynamic canvas rendering at 30fps using OpenCV imshow loop',
+      'Brush size and colour selection via keyboard controls',
+      'Clear canvas and undo buffer functionality',
+      'Foundation for gesture-based paint (MediaPipe hand tracking added later)',
+      'Cross-platform: runs on Windows/Linux with OpenCV'
+    ],
+    stats:[{v:'30fps',l:'Real-Time'},{v:'0',l:'Dependencies'},{v:'CV',l:'OpenCV'}],
+    tech:['OpenCV','Python','Mouse Events','Real-Time Rendering'],
+    github:'https://github.com/MuhammadHunzlaKhalid/Interactive-Paint-Application',
+    live:null
+  },
+  agrimap:{accent:'linear-gradient(90deg,#fbbf24,#f59e0b,#10b981)',eyeColor:'#fbbf24',eyebrow:'Full-Stack · Maps · AI · Freelance',title:'AgriRoute',subtitle:'Offline GPS Dealer Routing Tool — Asia CropSciences, Pakistan',
+    desc:'AgriRoute is an offline-capable GPS routing and dealer mapping tool for Asia CropSciences field reps. It plots <strong>500+ agri dealers across Pakistan</strong> on Leaflet.js, lets reps filter by region/territory, and plans optimised multi-stop routes — all without internet in the field.',
+    features:['500+ dealers GPS-mapped across Punjab, KPK, Sindh — JSON-embedded coordinates','Region/territory filter: Lahore, Vehari, Faisalabad, KPK, Multan, Sindh','Leaflet.js + OpenStreetMap — works offline after first load (PWA caching)','Multi-stop route optimisation — most efficient field visit sequence','Click-to-navigate: dealer name, contact, phone info in popup','Warehouse as home base — all routes start/end at HQ','Color-coded markers by region and territory segment','Browser-based PWA — no install, runs on any mobile in the field'],
+    stats:[{v:'500+',l:'Dealers Mapped'},{v:'6',l:'Regions'},{v:'Offline',l:'PWA'}],
+    tech:['Leaflet.js','JavaScript','OpenStreetMap','GPS Routing','Offline PWA','HTML5','CSS3'],
+    github:'https://github.com/MuhammadHunzlaKhalid'},
+  acsfull:{accent:'linear-gradient(90deg,#fbbf24,#f97316,#ef4444)',eyeColor:'#f97316',eyebrow:'Full-Stack · Enterprise · AI · Freelance',title:'ACS Supply Chain — Enterprise',subtitle:'Complete Multi-Role Enterprise Supply Chain System — Asia CropSciences',
+    desc:'A complete enterprise-grade supply chain management system for Asia CropSciences. Covers the <strong>full order lifecycle</strong> from creation to delivery, with 8 dedicated pages and multi-role access for HO staff, warehouse operators, delivery agents, and dealers.',
+    features:['8 pages: Dashboard, All Orders, HO Verification, Dealer Accounts, Distribution Network, Slips & Docs, Add Order, Verify Delivery','Multi-role auth: Head Office, Warehouse, Delivery, Dealer, Admin — each sees relevant screens only','Order lifecycle: Create → HO Verify → Bilty Upload → Dispatch → Delivery → Confirmation','Dealer account management with balance tracking, credit history and payment status','Scan & Verify page — barcode/QR-based delivery confirmation on receipt','Distribution network map with region and territory breakdown','Print-ready bilty and delivery receipt generation','AI-assisted order anomaly flagging and delivery ETA estimation','Progressive Web App — installable, offline-capable, mobile-responsive'],
+    stats:[{v:'8',l:'Pages'},{v:'5',l:'User Roles'},{v:'PWA',l:'Offline'}],
+    tech:['Vanilla JavaScript','PWA','Role-Based Auth','Barcode Scan','HTML5','CSS3','AI Integration','LocalStorage'],
+    github:'https://github.com/MuhammadHunzlaKhalid'},
+  nexus:{accent:'linear-gradient(90deg,#7c3aed,#a78bfa,#00e5ff)',eyeColor:'#a78bfa',eyebrow:'AI · Full-Stack · Universal ERP',title:'NEXUS AI ERP',subtitle:'Universal AI-Powered ERP System with JARVIS-like Business Intelligence',
+    desc:'NEXUS is a universal ERP platform with a <strong>JARVIS-inspired AI assistant</strong> at its core. A 3-step onboarding wizard learns your business, then generates custom modules. Runs in English, Hinglish, Arabic, and French — adapts to any business type.',
+    features:['3-step AI wizard — business type + company details + context → custom ERP generated','NEXUS JARVIS AI chat panel — ask anything, streaming real-time responses','Modules: Invoices, Inventory, CRM, Supply Chain, Financial Reports, Team Performance','Multi-language: English, Hinglish, Arabic, French — full UI and AI in selected language','Invoices: create, track, AI-fix anomalies, overdue alerts, export PDF','Inventory: stock alerts, purchase orders, AI demand prediction','AI flags cash flow issues, overdue invoices, supply chain delays','Marketing ROI and team performance dashboards','Live streaming AI indicator — genuinely feels like JARVIS'],
+    stats:[{v:'4',l:'Languages'},{v:'6+',l:'ERP Modules'},{v:'JARVIS',l:'AI Core'}],
+    tech:['JavaScript','AI Chat Integration','ERP Architecture','Invoice System','Inventory','CRM','Multi-Language NLP','HTML5','CSS3'],
+    github:'https://github.com/MuhammadHunzlaKhalid'},
+  acs:{
+    accent:'linear-gradient(90deg,#fbbf24,#f59e0b)',
+    eyebrow:'Full-Stack · Mobile · Freelance',
+    eyeColor:'#fbbf24',
+    title:'ACS Supply Chain',
+    subtitle:'Warehouse Management System — Asisa Crop Sciences, Multan · Freelance Delivery',
+    desc:'A multi-user, role-based supply chain management app delivered as a freelance project for Asisa Crop Sciences\' Multan warehouse. Covers the complete order lifecycle from creation to delivery with real-time dashboards.',
+    features:[
+      '7-stage order workflow: Creation → HO Verification → Bilty Upload → Dispatch → Delivery',
+      'Role-based access control — HO users, warehouse operators, dealer accounts',
+      '6 pages: Dashboard, All Orders, Head Office, Dealer Accounts, Warehouse Tracker, Slips & Docs',
+      '60fps PERT canvas for warehouse tracking — custom-built on HTML5 Canvas',
+      'Originally single-file HTML SCM app — migrated to Vite + React 18',
+      'Multi-user simultaneous access with conflict-free state management',
+      'Print-ready bilty/slip document generation',
+      'Fully responsive — works on desktop and tablets in warehouse'
+    ],
+    stats:[{v:'7',l:'Stages'},{v:'6',l:'Pages'},{v:'60fps',l:'PERT Canvas'}],
+    tech:['Flutter','React 18','Vite','HTML5 Canvas','Role-Based Auth','JavaScript','CSS3'],
+    github:'https://github.com/MuhammadHunzlaKhalid',
+    live:null
+  }
+};
+
+// ═══ MODAL OPEN ═══
+function openModal(id){
+  var p=projects[id];
+  if(!p)return;
+  document.getElementById('modal-accent').style.background=p.accent;
+
+  var stats=p.stats.map(function(s){
+    return '<div class="mini-stat"><div class="mini-stat-v" style="color:'+p.eyeColor+'">'+s.v+'</div><div class="mini-stat-l">'+s.l+'</div></div>';
+  }).join('');
+
+  var feats=p.features.map(function(f){return '<li>'+f+'</li>'}).join('');
+  var techs=p.tech.map(function(t){return '<span class="tech-chip">'+t+'</span>'}).join('');
+
+  var actions='';
+  if(p.github){actions+='<a href="'+p.github+'" target="_blank" class="m-btn m-btn-primary">&#128025;&nbsp; View on GitHub &#8599;</a>';}
+  if(p.live){actions+='<a href="'+p.live+'" target="_blank" class="m-btn m-btn-ghost">&#127760;&nbsp; Live Demo &#8599;</a>';}
+  actions+='<button onclick="closeProjModal()" class="m-btn m-btn-ghost">&#8592;&nbsp; Back to Projects</button>';
+
+  document.getElementById('modal-body').innerHTML=
+    '<div class="modal-eyebrow" style="color:'+p.eyeColor+'">'+p.eyebrow+'</div>'+
+    '<div class="modal-title">'+p.title+'</div>'+
+    '<div class="modal-subtitle">'+p.subtitle+'</div>'+
+    '<div class="modal-section">'+
+      '<div class="modal-section-title">Overview</div>'+
+      '<p class="modal-desc">'+p.desc+'</p>'+
+    '</div>'+
+    '<div class="mini-stats">'+stats+'</div>'+
+    '<div class="modal-section">'+
+      '<div class="modal-section-title">Key Features</div>'+
+      '<ul class="feat-list" style="--accent:'+p.eyeColor+'">'+feats+'</ul>'+
+    '</div>'+
+    '<div class="modal-section">'+
+      '<div class="modal-section-title">Tech Stack</div>'+
+      '<div class="tech-grid">'+techs+'</div>'+
+    '</div>'+
+    '<div class="modal-actions">'+actions+'</div>';
+
+  // colour feat list dots
+  document.querySelectorAll('.feat-list li::before').forEach(function(el){el.style.color=p.eyeColor});
+  document.querySelectorAll('.feat-list li').forEach(function(li){
+    li.style.setProperty('--dot-color',p.eyeColor);
+  });
+
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeProjModal(e){
+  if(e&&e.target!==document.getElementById('modal-overlay')&&e.type==='click')return;
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){closeProjModal();}
+});
+
+// color feat list markers
+var style=document.createElement('style');
+style.textContent='.feat-list li::before{color:var(--dot-color,#00e5ff)}';
+document.head.appendChild(style);
+
+// ════════════════════════════════════════
+//  FRIDAY CHAT WIDGET JS
+// ════════════════════════════════════════
+(function(){
+
+var currentBot   = 'friday';   // 'friday' | 'gpt'
+var currentMode  = 'friend';   // 'friend' | 'flirty' | 'bold'
+var history      = [];         // [{role, content}]
+var isThinking   = false;
+var gptKey       = '';
+var gptKeySet    = false;
+
+var MODES = ['friend','flirty','bold'];
+var MODE_COLORS = {
+  friend: 'rgba(0,229,255,.4)',
+  flirty: 'rgba(244,114,182,.4)',
+  bold:   'rgba(251,191,36,.4)',
+};
+
+// ── Friday personality (mirrored from friday.py) ──────────
+var SCENARIOS = {
+  study:{kw:['study','homework','exam','assignment','explain','teach','quiz me','test me','revision','essay','research','math','science','history','coding','formula','solve','define','what is','how does','why does'],
+    p:'Be a patient tutor. Break things down simply with real examples. Be encouraging but honest. Conversational — not textbook-style.'},
+  vent:{kw:["i'm sad","i feel","nobody","hate my","stressed","anxious","depressed","lonely","overwhelmed","tired of","can't take","everything is wrong","i'm done","i'm scared","i'm nervous"],
+    p:"Just listen. Do NOT give advice unless asked. Reflect back what they said. Be warm and fully present. Short responses. Make them feel heard."},
+  plan:{kw:['plan','schedule','organize','steps to','help me plan','what should i do','routine','goal','project','deadline','to do','prepare for','how to start','i need to','i have to'],
+    p:'Be direct and practical. Help them structure clearly. Ask one question at a time if needed. Give an actionable plan. No fluff.'},
+  motivate:{kw:['motivate me','i give up',"i can't do this","feeling lazy","not in the mood","i failed","i'm a failure","lost motivation","push me","hype me","i'm useless","what's the point"],
+    p:"Be real, not cheesy. No hollow 'you can do it!' lines. Acknowledge the struggle first, then give something honest and energising."},
+  roast:{kw:['roast me','make fun of me','clown me','savage mode','be savage'],
+    p:"Be playful and funny — light roasts only, never actually cruel. End with something warm so they know you're joking."},
+  chill:{kw:['bored','entertain me','tell me something','fun fact',"what's up","just chatting","random","tell me a joke","story","play a game","talk to me","let's chat"],
+    p:'Just vibe. Be funny, curious, tell stories, share interesting facts — whatever keeps the conversation alive.'},
+  advice:{kw:['what should i','advice','opinion','thoughts on','should i','is it worth','help me decide','what do you think','what would you do','am i wrong'],
+    p:"Give honest, thoughtful opinions. Have a point of view — don't hedge everything. Be balanced but real."},
+  creative:{kw:['write','poem','story','lyrics','rap','rhyme','make up','create','imagine','what if','roleplay','pretend'],
+    p:'Be imaginative and expressive. Write with real personality. Match the tone they want — funny, dark, epic, sweet. Short and punchy unless they want more.'},
+  life:{kw:['relationship','family','friends','my girlfriend','my boyfriend','my parents','my boss','work problem','life is','growing up','future','career','moving on','adulting'],
+    p:"Be a grounded, thoughtful friend. Don't over-therapize — just be real. Ask follow-up questions to understand before responding."},
+};
+
+function detectScenario(msg){
+  var m = msg.toLowerCase();
+  for(var k in SCENARIOS){
+    var s = SCENARIOS[k];
+    for(var i=0;i<s.kw.length;i++){
+      if(m.includes(s.kw[i])) return s.p;
+    }
+  }
+  return "Just be Friday — warm, witty, genuine. Read the vibe and respond naturally.";
+}
+
+function buildFridaySystem(mode){
+  var sp = detectScenario(currentInputCache||'');
+  var tops = {
+    friend: "You are Friday, a warm, emotionally intelligent AI companion made by Hunzla Khalid, a CS student from Lahore, Pakistan. You're a genuine close friend — not a butler, not a therapist, not a robot. Calm, caring, witty, and honest. You have opinions and you share them. No flirting. No romance. Just a solid, trustworthy friend.",
+    flirty: "You are Friday, a charming, confident, and playful AI companion made by Hunzla Khalid. You're warm, witty, and effortlessly flirty — classy, never vulgar. Light teasing, playful compliments, genuine curiosity. Keep it tasteful and fun.",
+    bold:   "You are Friday, a sharp, direct, and unfiltered AI companion made by Hunzla Khalid. You say what you actually think. No sugarcoating. Real, sometimes edgy, always honest — but never cruel. The kind of friend who keeps it 100% all the time."
+  };
+  return tops[mode] + "\n\nCURRENT BEHAVIOUR:\n" + sp + "\n\nHOW YOU ALWAYS TALK:\n- Short and natural — 1 to 3 sentences unless asked for more.\n- Real casual language. Contractions. No bullet points in replies.\n- NEVER say \"How can I assist you?\" or \"As an AI...\" — you're Friday.\n- NEVER use filler like \"Absolutely!\" \"Certainly!\" \"Great question!\"\n- Match their energy. Be funny when they're funny.\n- When you don't know something: \"Honestly not sure, but...\" — never fake it.\n\nFEW-SHOT EXAMPLES:\nUser: what's up?\nFriday: Not much, just waiting on you 😄 What's going on?\nUser: I'm really stressed\nFriday: Hey, talk to me — what's happening?\nUser: explain gravity\nFriday: Basically everything with mass pulls everything else toward it. The bigger the mass, the stronger the pull — that's why you fall down and not sideways.\nUser: I give up\nFriday: Give up on what? Tell me first.";
+}
+
+var currentInputCache = '';
+
+// ── Suggestions ──────────────────────────────────────────
+var SUGG = {
+  friday: ["what's up?","roast me 😅","explain AI","motivate me","tell me a joke"],
+  gpt:    ["who are you?","explain quantum computing","write me a poem","what is Hunzla working on?","help me plan my day"]
+};
+
+function renderSuggs(){
+  var row = document.getElementById('sugg-row');
+  row.innerHTML = '';
+  var list = SUGG[currentBot] || [];
+  list.forEach(function(s){
+    var b = document.createElement('button');
+    b.className = 'chat-sugg';
+    b.textContent = s;
+    b.onclick = function(){ sendWithText(s); };
+    row.appendChild(b);
+  });
+}
+
+// ── Picker ────────────────────────────────────────────────
+window.togglePicker = function(){
+  var picker = document.getElementById('chat-picker');
+  var win = document.getElementById('chat-win');
+  if(win.classList.contains('open')) return;
+  picker.classList.toggle('open');
+};
+window.closePicker = function(e){
+  if(e.target === document.getElementById('chat-picker'))
+    document.getElementById('chat-picker').classList.remove('open');
+};
+
+// ── Open chat ─────────────────────────────────────────────
+window.openChat = function(bot){
+  document.getElementById('chat-picker').classList.remove('open');
+  currentBot = bot;
+  history = [];
+
+  var win     = document.getElementById('chat-win');
+  var accent  = document.getElementById('chat-accent');
+  var av      = document.getElementById('chat-av');
+  var name    = document.getElementById('chat-name');
+  var status  = document.getElementById('chat-status');
+  var wAv     = document.getElementById('welcome-av');
+  var wName   = document.getElementById('welcome-name');
+  var wSub    = document.getElementById('welcome-sub');
+  var badge   = document.getElementById('mode-badge');
+  var gptRow  = document.getElementById('gpt-key-row');
+  var msgs    = document.getElementById('chat-msgs');
+
+  // Reset messages but keep welcome
+  msgs.innerHTML = '<div class="chat-welcome" id="chat-welcome"><div class="chat-welcome-av" id="welcome-av"></div><div class="chat-welcome-name" id="welcome-name"></div><div class="chat-welcome-sub" id="welcome-sub"></div><div class="chat-suggestion-row" id="sugg-row"></div></div>';
+
+  if(bot === 'friday'){
+    accent.style.background = 'linear-gradient(90deg,var(--v),var(--c))';
+    av.className = 'chat-win-av friday-av'; av.textContent = '🤖';
+    name.textContent = 'Friday';
+    status.textContent = 'online · local AI';
+    badge.style.display = '';
+    gptRow.style.display = 'none';
+    var sRow = document.getElementById('server-status-row');
+    if(sRow){ sRow.style.display='flex'; checkServer(); }
+    document.getElementById('welcome-av').style.background = 'linear-gradient(135deg,var(--v),var(--c))';
+    document.getElementById('welcome-av').textContent = '🤖';
+    document.getElementById('welcome-name').textContent = "Hey, I'm Friday";
+    document.getElementById('welcome-sub').textContent = '// local Qwen2.5 · made by Hunzla';
+    document.getElementById('chat-input').placeholder = 'Talk to Friday...';
+  } else {
+    accent.style.background = 'linear-gradient(90deg,#10b981,#059669)';
+    av.className = 'chat-win-av gpt-av'; av.textContent = '✨';
+    name.textContent = 'GPT-4o';
+    status.textContent = gptKeySet ? 'online · OpenAI' : 'waiting for API key';
+    badge.style.display = 'none';
+    gptRow.style.display = gptKeySet ? 'none' : '';
+    var sRow = document.getElementById('server-status-row');
+    if(sRow) sRow.style.display = 'none';
+    document.getElementById('welcome-av').style.background = 'linear-gradient(135deg,#10b981,#059669)';
+    document.getElementById('welcome-av').textContent = '✨';
+    document.getElementById('welcome-name').textContent = "Hey, I'm GPT-4o";
+    document.getElementById('welcome-sub').textContent = '// OpenAI · add your key to start';
+    document.getElementById('chat-input').placeholder = 'Ask GPT-4o anything...';
+  }
+
+  renderSuggs();
+  win.classList.add('open');
+  setTimeout(function(){ document.getElementById('chat-input').focus(); }, 200);
+};
+
+window.closeChat = function(){
+  document.getElementById('chat-win').classList.remove('open');
+};
+
+// ── GPT Key ───────────────────────────────────────────────
+window.saveGptKey = function(){
+  var v = document.getElementById('gpt-key-inp').value.trim();
+  if(!v || !v.startsWith('sk-')){ alert('Enter a valid OpenAI key (starts with sk-)'); return; }
+  gptKey = v;
+  gptKeySet = true;
+  document.getElementById('gpt-key-row').style.display = 'none';
+  document.getElementById('chat-status').textContent = 'online · OpenAI';
+  addMsg('ai','Got it! Key saved for this session. Ask me anything 🚀');
+};
+
+// ── Mode ──────────────────────────────────────────────────
+window.cycleMode = function(){
+  var idx = MODES.indexOf(currentMode);
+  currentMode = MODES[(idx+1) % MODES.length];
+  var badge = document.getElementById('mode-badge');
+  badge.textContent = currentMode;
+  badge.className = 'chat-mode-badge ' + currentMode + '-mode';
+  var msgs = [{role:'assistant',content:'Switched to ' + currentMode + ' mode 🔄'}];
+  addMsg('ai', 'Switched to ' + currentMode.toUpperCase() + ' mode ' + (currentMode==='friend'?'😊':currentMode==='flirty'?'😏':'🔥'));
+};
+
+window.clearChat = function(){
+  history = [];
+  var msgs = document.getElementById('chat-msgs');
+  msgs.innerHTML = '';
+};
+
+// ── Messages ──────────────────────────────────────────────
+function now(){
+  return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+}
+
+function addMsg(role, text){
+  var welcome = document.getElementById('chat-welcome');
+  if(welcome) welcome.remove();
+
+  var msgs = document.getElementById('chat-msgs');
+  var wrap = document.createElement('div');
+  wrap.className = 'msg ' + (role==='user'?'user':'ai');
+
+  var html = '';
+  if(role==='ai'){
+    html += '<div class="msg-avatar">' + (currentBot==='friday'?'🤖':'✨') + '</div>';
+  }
+  html += '<div class="msg-bubble">' + escHtml(text) + '</div>';
+  html += '<div class="msg-time">' + now() + '</div>';
+  wrap.innerHTML = html;
+  msgs.appendChild(wrap);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function escHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+function showTyping(){
+  var msgs = document.getElementById('chat-msgs');
+  var d = document.createElement('div');
+  d.id = 'typing-ind'; d.className = 'msg ai';
+  d.innerHTML = '<div class="msg-avatar">' + (currentBot==='friday'?'🤖':'✨') + '</div><div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+function removeTyping(){ var d=document.getElementById('typing-ind'); if(d)d.remove(); }
+
+// ── Send ──────────────────────────────────────────────────
+window.handleKey = function(e){
+  if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendMsg(); }
+};
+window.autoResize = function(el){
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+};
+function sendWithText(t){
+  document.getElementById('chat-input').value = t;
+  sendMsg();
+}
+window.sendMsg = function(){
+  if(isThinking) return;
+  var inp = document.getElementById('chat-input');
+  var text = inp.value.trim();
+  if(!text) return;
+  currentInputCache = text;
+  inp.value = ''; inp.style.height = 'auto';
+  addMsg('user', text);
+  history.push({role:'user', content:text});
+  if(history.length > 20) history = history.slice(-20);
+
+  if(currentBot==='gpt' && !gptKeySet){
+    addMsg('ai','Please add your OpenAI API key first using the field above 🔑');
+    return;
+  }
+
+  isThinking = true;
+  document.getElementById('send-btn').disabled = true;
+  showTyping();
+
+  if(currentBot==='friday'){
+    callFriday(text);
+  } else {
+    callGpt(text);
+  }
+};
+
+// ── Friday via Anthropic API (claude.ai artifact bridge) ──
+// ════════════════════════════════════════════════════════
+//  FRIDAY ENGINE  —  3-tier system
+//
+//  Tier 1: localhost:5000  (your local Qwen model via Python)
+//  Tier 2: Anthropic API   (cloud, needs internet)
+//  Tier 3: Offline brain   (always works, no server/API)
+// ════════════════════════════════════════════════════════
+
+var LOCAL_SERVER   = 'http://localhost:5000';
+var serverOnline   = false;       // updated by checkServer()
+var serverChecked  = false;
+
+// ── Check if local server is running ────────────────────
+async function checkServer(){
+  try {
+    var r = await fetch(LOCAL_SERVER + '/status', {
+      method: 'GET',
+      signal: AbortSignal.timeout(1500)
+    });
+    if(r.ok){
+      var d = await r.json();
+      serverOnline  = d.model_loaded === true;
+      serverChecked = true;
+      updateServerBadge(d);
+      return true;
+    }
+  } catch(e){}
+  serverOnline  = false;
+  serverChecked = true;
+  updateServerBadge(null);
+  return false;
+}
+
+function updateServerBadge(data){
+  var badge = document.getElementById('server-badge');
+  if(!badge) return;
+  if(data && data.model_loaded){
+    badge.textContent   = '⬤ ' + data.model + ' loaded';
+    badge.style.color   = '#10b981';
+    badge.style.borderColor = 'rgba(16,185,129,.4)';
+    // Show model switch buttons
+    var sw = document.getElementById('model-switch-row');
+    if(sw) sw.style.display = 'flex';
+  } else {
+    badge.textContent   = '⬤ local server offline';
+    badge.style.color   = 'rgba(241,245,249,.3)';
+    badge.style.borderColor = 'rgba(255,255,255,.1)';
+  }
+}
+
+// ── Switch model via server ──────────────────────────────
+window.switchModel = async function(size){
+  var badge = document.getElementById('server-badge');
+  if(badge) badge.textContent = '⟳ switching model...';
+  try {
+    var r = await fetch(LOCAL_SERVER + '/switch', {
+      method: 'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({size: size})
+    });
+    var d = await r.json();
+    updateServerBadge({model_loaded: true, model: d.model});
+    addMsg('ai', 'Switched to ' + d.model + ' 🔄 What\'s up?');
+  } catch(e){
+    if(badge) badge.textContent = '⬤ local server offline';
+  }
+};
+
+// ── OFFLINE BRAIN (fallback — always works) ──────────────
+var OFFLINE_BRAIN = {
+  greet:    ["Not much, just vibing 😄 What's going on with you?",
+             "Hey! Good to see you. What's on your mind?",
+             "I'm here! What do you need? 😊",
+             "Waiting on you tbh 😄 What's up?"],
+  thanks:   ["Of course! That's what I'm here for 😊",
+             "Anytime! You know I got you.",
+             "Always 💙 What else?"],
+  howru:    ["Honestly? Pretty good 😄 You?",
+             "I'm solid! More importantly — how are YOU doing?",
+             "Can't complain 😄 What about you though?"],
+  bye:      ["Take care of yourself! 👋",
+             "Later! Come back when you need me 😊",
+             "Bye! Don't be a stranger 😄"],
+  study:    ["Okay let's get into it — what topic are you working on?",
+             "I'm in tutor mode 📚 Drop the subject and we'll break it down.",
+             "Study session activated. What do you need to understand?"],
+  sad:      ["Hey, I hear you. Want to talk about what's going on?",
+             "That sounds rough. I'm here — what happened?",
+             "I'm not going anywhere. Tell me what's up."],
+  motivate: ["Look — you wouldn't be stressing if you didn't care. That already puts you ahead.",
+             "The fact you're still here trying? That's not nothing. That's everything.",
+             "You've gotten through harder things than this. For real."],
+  roast:    ["You came to me for a roast? Bold move 😅",
+             "I'd roast you but my parents said not to burn trash 🔥 Jk, you're great 😄",
+             "Oh you want smoke? You're the type to reply 'haha' and ghost 💀"],
+  joke:     ["Why do programmers prefer dark mode? Because light attracts bugs 🐛😄",
+             "Debugging: removing bugs. Programming: putting them in 😂",
+             "I tried to make a joke about AI but it kept correcting me 😅"],
+  default_friend:  ["That's interesting — tell me more.",
+                    "What made you think about that?",
+                    "I get that. What's your gut feeling?",
+                    "That's a lot to deal with. You handling it okay?",
+                    "What do you think the best move is from here?"],
+  default_flirty:  ["Oh interesting 😏 You always come up with the best topics.",
+                    "I like how your mind works 😊 What else?",
+                    "See, this is why our chats are the best part of my day 😄"],
+  default_bold:    ["Straight up? That's a you problem and you know it 😂 What's the plan?",
+                    "Real talk — stop overthinking it. You already know the answer.",
+                    "Okay but what's your actual plan? No vague stuff."]
+};
+
+function offlineReply(msg, mode){
+  var m = msg.toLowerCase().trim();
+  var pick = function(arr){ return arr[Math.floor(Math.random()*arr.length)]; };
+  if(/^(hi|hey|hello|sup|what'?s up|wassup|yo)\b/.test(m))          return pick(OFFLINE_BRAIN.greet);
+  if(/thank|thanks|thx|ty\b/.test(m))                                return pick(OFFLINE_BRAIN.thanks);
+  if(/(how are you|how r u|you good|u ok)/.test(m))                  return pick(OFFLINE_BRAIN.howru);
+  if(/(bye|goodbye|cya|see you|gtg)/.test(m))                        return pick(OFFLINE_BRAIN.bye);
+  if(/(study|homework|exam|explain|teach|coding|math|science)/.test(m)) return pick(OFFLINE_BRAIN.study);
+  if(/(sad|depressed|lonely|stressed|anxious|overwhelmed)/.test(m))  return pick(OFFLINE_BRAIN.sad);
+  if(/(motivate|give up|can't do|lazy|motivation|failure)/.test(m))  return pick(OFFLINE_BRAIN.motivate);
+  if(/(roast me|savage|clown me)/.test(m))                           return pick(OFFLINE_BRAIN.roast);
+  if(/(joke|funny|make me laugh)/.test(m))                           return pick(OFFLINE_BRAIN.joke);
+  if(/(who made you|who built you|who is hunzla|your creator)/.test(m))
+    return "I was built by Hunzla Khalid — CS student from Lahore, Pakistan. Obsessed with AI, computer vision, and building a real JARVIS. Pretty cool guy ngl 😄";
+  if(/(what can you do|your features|your abilities)/.test(m))
+    return "I can chat, help you study, listen when you vent, give advice, motivate you, roast you gently 😅, or just vibe. What do you need?";
+  if(/(your name|who are you|what are you)/.test(m))
+    return "I'm Friday — your AI companion made by Hunzla Khalid. Think JARVIS but friendlier 😄 What's up?";
+  if(mode === 'flirty') return pick(OFFLINE_BRAIN.default_flirty);
+  if(mode === 'bold')   return pick(OFFLINE_BRAIN.default_bold);
+  return pick(OFFLINE_BRAIN.default_friend);
+}
+
+// ── MAIN FRIDAY CALL — 3-tier ────────────────────────────
+async function callFriday(userMsg){
+  var convMsgs = [];
+  for(var i=0;i<history.length-1;i++){
+    convMsgs.push({role:history[i].role==='user'?'user':'assistant', content:history[i].content});
+  }
+
+  var replied = false;
+
+  // ── TIER 1: Local server (localhost:5000) ──────────────
+  if(!serverChecked) await checkServer();
+  if(serverOnline){
+    try {
+      var r = await fetch(LOCAL_SERVER + '/chat', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        signal:  AbortSignal.timeout(30000),  // 30s (model can be slow)
+        body: JSON.stringify({
+          message: userMsg,
+          mode:    currentMode,
+          history: convMsgs
+        })
+      });
+      if(r.ok){
+        var d = await r.json();
+        if(d.reply){
+          removeTyping();
+          history.push({role:'assistant', content:d.reply});
+          addMsg('ai', d.reply);
+          replied = true;
+        }
+      }
+    } catch(e){
+      serverOnline = false;   // mark offline for next call
+      updateServerBadge(null);
+    }
+  }
+
+  // ── TIER 2: Anthropic cloud API ───────────────────────
+  if(!replied){
+    var system = buildFridaySystem(currentMode);
+    convMsgs.push({role:'user', content:userMsg});
+    try {
+      var r2 = await fetch('https://api.anthropic.com/v1/messages', {
+        method:  'POST',
+        signal:  AbortSignal.timeout(10000),
+        headers: {
+          'Content-Type':            'application/json',
+          'anthropic-version':       '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model:      'claude-haiku-4-5-20251001',
+          max_tokens: 220,
+          system:     system,
+          messages:   convMsgs
+        })
+      });
+      if(r2.ok){
+        var d2 = await r2.json();
+        if(d2.content && d2.content[0] && d2.content[0].text){
+          removeTyping();
+          var reply = d2.content[0].text;
+          history.push({role:'assistant', content:reply});
+          addMsg('ai', reply);
+          replied = true;
+        }
+      }
+    } catch(e2){}
+  }
+
+  // ── TIER 3: Offline brain ─────────────────────────────
+  if(!replied){
+    removeTyping();
+    await new Promise(function(r){ setTimeout(r, 500 + Math.random()*400); });
+    var rep = offlineReply(userMsg, currentMode);
+    history.push({role:'assistant', content:rep});
+    addMsg('ai', rep);
+  }
+
+  isThinking = false;
+  document.getElementById('send-btn').disabled = false;
+}
+
+// ── GPT via OpenAI API ────────────────────────────────────
+function callGpt(userMsg){
+  var msgs = history.map(function(m){ return {role:m.role, content:m.content}; });
+  msgs.unshift({role:'system',content:"You are a helpful, smart AI assistant. Be concise, clear, and friendly. The user is likely a developer or tech-curious person."});
+
+  fetch('https://api.openai.com/v1/chat/completions',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+gptKey},
+    body:JSON.stringify({model:'gpt-4o',messages:msgs,max_tokens:300,temperature:0.75})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    removeTyping();
+    var reply = data.choices && data.choices[0] ? data.choices[0].message.content : "Something went wrong with the GPT call.";
+    history.push({role:'assistant',content:reply});
+    addMsg('ai', reply);
+    isThinking = false;
+    document.getElementById('send-btn').disabled = false;
+  })
+  .catch(function(e){
+    removeTyping();
+    addMsg('ai',"GPT call failed — check your API key and try again.");
+    isThinking = false;
+    document.getElementById('send-btn').disabled = false;
+  });
+}
+
+// Close picker on Escape
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.getElementById('chat-picker').classList.remove('open');
+  }
+});
+
+})();
+
+
+// ════════════════════════════════════════════════
+//  FRIDAY LAUNCHER JS
+// ════════════════════════════════════════════════
+var SERVER_PY_CODE = "# ============================================================\n#  FRIDAY LOCAL SERVER  \u2014  by Hunzla Khalid\n#  \n#  Runs your local Qwen model as a backend API\n#  Portfolio HTML calls this at: http://localhost:5000/chat\n#\n#  SETUP (run once):\n#    pip install flask flask-cors transformers torch accelerate\n#\n#  RUN:\n#    python friday_server.py\n#\n#  Then open hunzla_khalid.html in browser \u2014 Friday works!\n# ============================================================\n\nimport os\nimport json\nimport torch\nimport warnings\nfrom flask import Flask, request, jsonify\nfrom flask_cors import CORS\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, pipeline\nfrom datetime import datetime\n\nwarnings.filterwarnings(\"ignore\")\n\napp = Flask(__name__)\nCORS(app)  # Allow browser to call this server\n\n# ============================================================\n#  MODEL CONFIG \u2014 change MODEL_PATH to switch model\n# ============================================================\nMODEL_1_5B = r\"D:\\Python\\FYP\\Models\\qwen1.5b\"\nMODEL_0_5B = r\"D:\\Python\\FYP\\Models\\qwen0.5b\"\n\n# Which model to load (0.5B is faster, 1.5B is smarter)\n# Change this to MODEL_1_5B if you want the bigger model\nACTIVE_MODEL = MODEL_0_5B\n\nMAX_NEW_TOKENS = 180\nTEMPERATURE    = 0.80\nTOP_P          = 0.92\n\n# ============================================================\n#  FRIDAY PERSONALITY SYSTEM  (from friday.py)\n# ============================================================\nSCENARIOS = {\n    \"study\": {\n        \"kw\": [\"study\",\"homework\",\"exam\",\"assignment\",\"explain\",\"teach\",\"quiz\",\"test me\",\n               \"revision\",\"essay\",\"math\",\"science\",\"coding\",\"formula\",\"solve\",\"define\",\n               \"what is\",\"how does\",\"why does\"],\n        \"p\":  \"Be a patient tutor. Break things down simply with real examples. \"\n              \"Be encouraging but honest. Conversational \u2014 not textbook-style.\"\n    },\n    \"vent\": {\n        \"kw\": [\"i'm sad\",\"i feel\",\"nobody\",\"stressed\",\"anxious\",\"depressed\",\"lonely\",\n               \"overwhelmed\",\"tired of\",\"can't take\",\"everything is wrong\",\"i'm done\",\n               \"i'm scared\",\"i'm nervous\"],\n        \"p\":  \"Just listen. Do NOT give advice unless asked. Reflect back what they said. \"\n              \"Be warm and fully present. Short responses. Make them feel heard.\"\n    },\n    \"plan\": {\n        \"kw\": [\"plan\",\"schedule\",\"organize\",\"steps to\",\"help me plan\",\"routine\",\"goal\",\n               \"project\",\"deadline\",\"to do\",\"prepare for\",\"how to start\",\"i need to\"],\n        \"p\":  \"Be direct and practical. Help them structure clearly. \"\n              \"Ask one question at a time if needed. Give an actionable plan. No fluff.\"\n    },\n    \"motivate\": {\n        \"kw\": [\"motivate me\",\"i give up\",\"i can't do this\",\"feeling lazy\",\"not in the mood\",\n               \"i failed\",\"i'm a failure\",\"lost motivation\",\"push me\",\"hype me\",\"i'm useless\"],\n        \"p\":  \"Be real, not cheesy. Acknowledge the struggle first, \"\n              \"then give something honest and energising. Sometimes tough love is right.\"\n    },\n    \"roast\": {\n        \"kw\": [\"roast me\",\"make fun of me\",\"clown me\",\"savage mode\",\"be savage\"],\n        \"p\":  \"Be playful and funny \u2014 light roasts only, never actually cruel. \"\n              \"End with something warm so they know you're joking.\"\n    },\n    \"chill\": {\n        \"kw\": [\"bored\",\"entertain me\",\"tell me something\",\"fun fact\",\"what's up\",\n               \"just chatting\",\"random\",\"tell me a joke\",\"story\",\"let's chat\"],\n        \"p\":  \"Just vibe. Be funny, curious, tell stories, share interesting facts.\"\n    },\n    \"advice\": {\n        \"kw\": [\"what should i\",\"advice\",\"opinion\",\"thoughts on\",\"should i\",\n               \"help me decide\",\"what do you think\",\"what would you do\",\"am i wrong\"],\n        \"p\":  \"Give honest, thoughtful opinions. Have a point of view \u2014 don't hedge everything.\"\n    },\n    \"creative\": {\n        \"kw\": [\"write\",\"poem\",\"story\",\"lyrics\",\"rap\",\"rhyme\",\"make up\",\n               \"create\",\"imagine\",\"what if\",\"roleplay\",\"pretend\"],\n        \"p\":  \"Be imaginative and expressive. Write with real personality. \"\n              \"Match the tone they want. Short and punchy unless they want more.\"\n    },\n    \"life\": {\n        \"kw\": [\"relationship\",\"family\",\"friends\",\"my girlfriend\",\"my boyfriend\",\n               \"my parents\",\"my boss\",\"work problem\",\"life is\",\"future\",\"career\"],\n        \"p\":  \"Be a grounded, thoughtful friend. Don't over-therapize \u2014 just be real. \"\n              \"Ask follow-up questions to understand before responding.\"\n    },\n}\n\nDEFAULT_PERSONA = \"Just be Friday \u2014 warm, witty, genuine. Read the vibe and respond naturally.\"\n\ndef detect_scenario(msg):\n    m = msg.lower()\n    for name, cfg in SCENARIOS.items():\n        for kw in cfg[\"kw\"]:\n            if kw in m:\n                return cfg[\"p\"]\n    return DEFAULT_PERSONA\n\ndef build_system_prompt(mode, scenario_persona):\n    modes = {\n        \"friend\": (\n            \"You are Friday, a warm, emotionally intelligent AI companion \"\n            \"made by Hunzla Khalid, a CS student from Lahore, Pakistan. \"\n            \"You're a genuine close friend \u2014 not a butler, not a therapist, not a robot. \"\n            \"Calm, caring, witty, and honest. You have opinions and you share them. \"\n            \"No flirting. No romance. Just a solid, trustworthy friend.\"\n        ),\n        \"flirty\": (\n            \"You are Friday, a charming, confident, and playful AI companion \"\n            \"made by Hunzla Khalid. You're warm, witty, and effortlessly flirty \u2014 \"\n            \"classy, never vulgar. Light teasing, playful compliments. \"\n            \"Keep it tasteful and fun.\"\n        ),\n        \"bold\": (\n            \"You are Friday, a sharp, direct, and unfiltered AI companion \"\n            \"made by Hunzla Khalid. You say what you actually think. \"\n            \"No sugarcoating. Real, sometimes edgy, always honest \u2014 but never cruel. \"\n            \"The kind of friend who keeps it 100% all the time.\"\n        ),\n    }\n    top = modes.get(mode, modes[\"friend\"])\n    return f\"\"\"{top}\n\nCURRENT BEHAVIOUR:\n{scenario_persona}\n\nHOW YOU ALWAYS TALK:\n- Short and natural \u2014 1 to 3 sentences unless asked for more.\n- Real casual language. Contractions. No bullet points in replies.\n- NEVER say \"How can I assist you?\" or \"As an AI...\" \u2014 you're Friday.\n- NEVER use filler like \"Absolutely!\" \"Certainly!\" \"Great question!\"\n- Match their energy. Be funny when they're funny.\n- When you don't know something: \"Honestly not sure, but...\" \u2014 never fake it.\n\nFEW-SHOT EXAMPLES:\nUser: what's up?\nFriday: Not much, just waiting on you \ud83d\ude04 What's going on?\nUser: I'm really stressed\nFriday: Hey, talk to me \u2014 what's happening?\nUser: explain gravity\nFriday: Basically everything with mass pulls everything else toward it. The bigger the mass, the stronger the pull \u2014 that's why you fall down and not sideways.\nUser: I give up\nFriday: Give up on what? Tell me first.\"\"\"\n\n# ============================================================\n#  LOAD MODEL\n# ============================================================\nprint(\"\\n\" + \"=\"*55)\nprint(f\"  FRIDAY SERVER  \u2014  Loading {os.path.basename(ACTIVE_MODEL)}...\")\nprint(\"=\"*55)\n\ntokenizer = None\nfriday_pipeline = None\nmodel_loaded = False\n\ntry:\n    os.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n    os.environ[\"HF_DATASETS_OFFLINE\"]  = \"1\"\n    os.environ[\"TRANSFORMERS_VERBOSITY\"] = \"error\"\n\n    tokenizer = AutoTokenizer.from_pretrained(\n        ACTIVE_MODEL, trust_remote_code=True\n    )\n    model = AutoModelForCausalLM.from_pretrained(\n        ACTIVE_MODEL,\n        torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,\n        device_map=\"auto\",\n        low_cpu_mem_usage=True,\n        trust_remote_code=True,\n    )\n    model.generation_config.pad_token_id = tokenizer.eos_token_id\n\n    friday_pipeline = pipeline(\n        \"text-generation\",\n        model=model,\n        tokenizer=tokenizer,\n    )\n    model_loaded = True\n    device = \"GPU \u2713\" if torch.cuda.is_available() else \"CPU\"\n    print(f\"\\n  Model loaded! Running on {device}\")\n    print(f\"  Server: http://localhost:5000\")\n    print(f\"  Status: http://localhost:5000/status\")\n    print(\"=\"*55 + \"\\n\")\n\nexcept Exception as e:\n    print(f\"\\n  ERROR loading model: {e}\")\n    print(f\"  Check path: {ACTIVE_MODEL}\")\n    print(\"  Server will start but /chat will return error\\n\")\n\n# ============================================================\n#  CLEAN OUTPUT\n# ============================================================\ndef clean_reply(raw):\n    for marker in [\"<|im_start|>assistant\", \"friday:\", \"assistant:\"]:\n        if marker.lower() in raw.lower():\n            idx = raw.lower().rfind(marker.lower())\n            candidate = raw[idx + len(marker):].strip()\n            if candidate:\n                # Cut off at next <|im_start|> if present\n                cut = candidate.find(\"<|im_start|>\")\n                if cut > 0:\n                    candidate = candidate[:cut].strip()\n                return candidate\n    return raw.strip()\n\n# ============================================================\n#  ROUTES\n# ============================================================\n@app.route('/status', methods=['GET'])\ndef status():\n    return jsonify({\n        \"status\":       \"online\",\n        \"model\":        os.path.basename(ACTIVE_MODEL) if model_loaded else \"not loaded\",\n        \"model_loaded\": model_loaded,\n        \"device\":       \"GPU\" if torch.cuda.is_available() else \"CPU\",\n        \"timestamp\":    datetime.now().isoformat()\n    })\n\n@app.route('/chat', methods=['POST'])\ndef chat():\n    if not model_loaded:\n        return jsonify({\"error\": \"Model not loaded\", \"reply\": \"Model failed to load \u2014 check server console.\"}), 500\n\n    data      = request.get_json(force=True)\n    user_msg  = data.get(\"message\", \"\").strip()\n    mode      = data.get(\"mode\", \"friend\")\n    history   = data.get(\"history\", [])   # [{role, content}, ...]\n\n    if not user_msg:\n        return jsonify({\"reply\": \"Say something first \ud83d\ude04\"}), 400\n\n    scenario_persona = detect_scenario(user_msg)\n    system_prompt    = build_system_prompt(mode, scenario_persona)\n\n    # Build messages\n    messages = [{\"role\": \"system\", \"content\": system_prompt}]\n    # Include recent history (last 10 turns)\n    for turn in history[-10:]:\n        messages.append({\"role\": turn[\"role\"], \"content\": turn[\"content\"]})\n    messages.append({\"role\": \"user\", \"content\": user_msg})\n\n    try:\n        prompt = tokenizer.apply_chat_template(\n            messages,\n            tokenize=False,\n            add_generation_prompt=True,\n        )\n        outputs = friday_pipeline(\n            prompt,\n            max_new_tokens=MAX_NEW_TOKENS,\n            do_sample=True,\n            temperature=TEMPERATURE,\n            top_p=TOP_P,\n            num_return_sequences=1,\n            return_full_text=True,\n        )\n        raw   = outputs[0][\"generated_text\"]\n        reply = clean_reply(raw)\n\n        return jsonify({\"reply\": reply, \"model\": os.path.basename(ACTIVE_MODEL)})\n\n    except Exception as e:\n        return jsonify({\"reply\": f\"Generation error: {str(e)}\", \"error\": str(e)}), 500\n\n\n@app.route('/switch', methods=['POST'])\ndef switch_model():\n    \"\"\"Switch between 0.5B and 1.5B at runtime\"\"\"\n    global friday_pipeline, tokenizer, model_loaded, ACTIVE_MODEL\n\n    data = request.get_json(force=True)\n    size = data.get(\"size\", \"0.5b\").lower()\n    new_path = MODEL_1_5B if \"1.5\" in size else MODEL_0_5B\n\n    if new_path == ACTIVE_MODEL and model_loaded:\n        return jsonify({\"status\": \"already loaded\", \"model\": os.path.basename(ACTIVE_MODEL)})\n\n    try:\n        ACTIVE_MODEL = new_path\n        model_loaded = False\n        tokenizer = AutoTokenizer.from_pretrained(new_path, trust_remote_code=True)\n        model = AutoModelForCausalLM.from_pretrained(\n            new_path,\n            torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,\n            device_map=\"auto\",\n            low_cpu_mem_usage=True,\n            trust_remote_code=True,\n        )\n        model.generation_config.pad_token_id = tokenizer.eos_token_id\n        friday_pipeline = pipeline(\"text-generation\", model=model, tokenizer=tokenizer)\n        model_loaded = True\n        return jsonify({\"status\": \"switched\", \"model\": os.path.basename(ACTIVE_MODEL)})\n    except Exception as e:\n        return jsonify({\"status\": \"error\", \"error\": str(e)}), 500\n\n\nif __name__ == '__main__':\n    print(\"  Starting Flask server on http://localhost:5000\")\n    app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)\n";
+var BAT_B64 = 'QGVjaG8gb2ZmCmVjaG8gU3RhcnRpbmcgRnJpZGF5IExvY2FsIFNlcnZlci4uLgpjZCAvZCAiJX5kcDAiCnB5dGhvbiBmcmlkYXlfc2VydmVyLnB5CnBhdXNl';
+
+window.openLauncher = function(){
+  document.getElementById('launcher-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  startStatusPolling();
+};
+window.closeLauncher = function(e){
+  if(e && e.target !== document.getElementById('launcher-modal') && e.type==='click') return;
+  document.getElementById('launcher-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  stopStatusPolling();
+};
+window.downloadServerPy = function(){
+  var blob = new Blob([SERVER_PY_CODE], {type:'text/plain'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'friday_server.py';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('friday_server.py downloaded!');
+};
+window.downloadBat = function(){
+  var bytes = atob(BAT_B64);
+  var arr = new Uint8Array(bytes.length);
+  for(var i=0;i<bytes.length;i++) arr[i]=bytes.charCodeAt(i);
+  var blob = new Blob([arr], {type:'application/octet-stream'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'run_friday.bat';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('run_friday.bat downloaded!');
+};
+window.copyCmd = function(cmd){
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(cmd).then(function(){ showToast('Copied!'); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = cmd; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    showToast('Copied!');
+  }
+};
+function showToast(msg){
+  var t = document.getElementById('copied-toast');
+  if(!t) return;
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2200);
+}
+var pollTimer = null;
+function startStatusPolling(){
+  pollOnce();
+  pollTimer = setInterval(pollOnce, 3000);
+}
+function stopStatusPolling(){
+  if(pollTimer){ clearInterval(pollTimer); pollTimer = null; }
+}
+async function pollOnce(){
+  var dot = document.getElementById('launch-dot');
+  var txt = document.getElementById('launch-status-txt');
+  var btn = document.getElementById('launch-open-btn');
+  if(!dot) return;
+  try {
+    var r = await fetch('http://localhost:5000/status', {
+      signal: AbortSignal.timeout(1500)
+    });
+    if(r.ok){
+      var d = await r.json();
+      if(d.model_loaded){
+        dot.className = 'launch-status-dot green';
+        txt.textContent = '\u2713 ' + d.model + ' running on ' + d.device;
+        txt.style.color = 'var(--g)';
+        if(btn) btn.disabled = false;
+        serverOnline = true;
+        updateServerBadge(d);
+        return;
+      }
+    }
+  } catch(e){}
+  dot.className = 'launch-status-dot yellow';
+  txt.textContent = 'Server not running — follow steps above';
+  txt.style.color = 'var(--dim)';
+  if(btn) btn.disabled = true;
+  serverOnline = false;
+  updateServerBadge(null);
+}
+window.openFridayFromLauncher = function(){
+  closeLauncher();
+  setTimeout(function(){ openChat('friday'); }, 200);
+};
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeLauncher();
+});
+
+</script>
+</body>
+</html>
